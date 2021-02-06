@@ -1,1 +1,10 @@
-var db = require("../models");
+// var db = require("../models");
+var express = require("express");
+
+const router = express.Router();
+
+router.get('/', function (req, res) {
+    res.render('index');
+});
+
+module.exports = router;
