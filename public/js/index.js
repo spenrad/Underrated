@@ -1,7 +1,5 @@
 $(document).ready(function () { 
 
-// var db = require("../models");
-
 var button = $(".submit");
 
 button.on("click", function () { 
@@ -11,9 +9,8 @@ button.on("click", function () {
     }).then(function(response) {
         console.log(response);
 
-            for (i=0; i < response.Search.length; i++) {
+            for (i = 0; i < response.Search.length; i++) {
                 queryURL= "http://www.omdbapi.com/?apikey=b9e5adb0&t=" + response.Search[i].Title;
-                console.log('HEYY');
             
             $.ajax({
                 url : queryURL,
@@ -37,7 +34,7 @@ button.on("click", function () {
                 $(".container").append(h2, h3, p, img, btn1, btn2);
             
             })}
-    });
-});
-    
+        });
+    });   
 });    
+
