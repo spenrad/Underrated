@@ -1,3 +1,7 @@
+var Movie = require("./movie");
+var User = require("./user");
+var UserMovie = require("./usermovie");
+
 module.exports = function (sequelize, DataTypes) {
     var User = sequelize.define("User", {
         username: {
@@ -16,9 +20,11 @@ module.exports = function (sequelize, DataTypes) {
         }
     });
 
-    User.associate = function (models) {
-        User.hasMany(models.UserMovie, {});
-    }
+    // UserMovie.belongsTo(User, {
+    //     foreignKey: { allowNull: false }
+    // })
+
+    // User.hasMany(UserMovie, {});
 
     return User;
 }
