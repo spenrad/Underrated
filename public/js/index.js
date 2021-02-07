@@ -10,28 +10,34 @@ button.on("click", function () {
         method: "GET"
     }).then(function(response) {
         console.log(response);
-        for (var i=0; i < response.Search.length; i++) {
-            var h1 = $("<h1>");
-            var h2 = $('<h2>');
-            var img = $('<img>');
-            var button =$('<button>');
-            var button2 =$('<button>');
-            h1.text(response.Search[i].Title);
-            h2.text(response.Search[i].Year);
-            img.attr("src", response.Search[i].Poster);
-            button.text("Watchlist").attr("id", "watch");
-            button2.text("Seen it").attr("id", "seen");
 
-            $(".container").append(h1, h2, img, button, button2);
+            for (i=0; i < response.Search.length; i++) {
+                queryURL= "http://www.omdbapi.com/?apikey=b9e5adb0&t=" + response.Search[i].Title;
+                console.log('HEYY');
             
-            
-            
+            $.ajax({
+                url : queryURL,
+                method: "GET"
+            }).then(function(response) {
+                console.log(response);
+                
+                var h2 = $("<h2>");
+                var h3 = $("<h3>");
+                var p = $("<p>");
+                var img = $("<img>");
+                var btn1= $("<button>");
+                var btn2= $("<button>");
+                h2.text(response.Title)
+                h3.text(response.Year);
+                p.text(response.Plot);
+                img.attr("src", response.Poster);
+                btn1.text("Watch List").attr("id", "watchList");
+                btn2.text("Seen it!").attr("id", "reviews");
 
-        }
+                $(".container").append(h2, h3, p, img, btn1, btn2);
+            
+            })}
     });
 });
     
 });    
-    
-
-// const queryURL = `http://www.omdbapi.com/?apikey=b9e5adb0&s=${req.params.movie}`;
