@@ -27,8 +27,8 @@ $(document).ready(function () {
                     h3.text(response.Genre + " | " + "Rated: " + response.Rated);
                     p.text(response.Plot);
                     img.attr("src", response.Poster);
-                    btn1.text("Watch List").attr("id", response.imdbID ).attr("class", "watchList", "btn", "btn-secondary" ).attr("name", response.Title);
-                    btn2.text("Seen it!").attr("id", "reviews");
+                    btn1.text("Watch List").attr("id", response.imdbID ).attr("class", "watchList" ).attr("name", response.Title);
+                    btn2.text("Seen it!").attr("id", response.imdbID ).attr("class", "reviews").attr("name", response.Title);
                     $(".searchResults").append(h2, h3, img, p, btn1, btn2);
                    
                 })
@@ -53,7 +53,7 @@ $(document).ready(function () {
         })
     });
 
-    $(document).on("click", ".watchList", function (event) {
+    $(document).on("click", ".watchList", ".reviews", function (event) {
         event.preventDefault();
         console.log("test");
         let imdbID = this.id;
