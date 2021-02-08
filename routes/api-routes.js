@@ -35,9 +35,11 @@ module.exports = function (app) {
     })
 
     app.post("/api/movies", isAuthenticated, function (req, res) {
-        db.Movie.create({
+        db.Movie.findOrCreate({
+          where: {
             title: req.body.name,
             imdbID: req.body.imdbID
+          }
         }).then(function (dbMovie) {
             console.log(dbMovie);
         })
