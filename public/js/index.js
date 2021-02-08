@@ -53,7 +53,7 @@ $(document).ready(function () {
         })
     });
 
-    $(document).on("click", ".watchList", ".reviews", function (event) {
+    $(document).on("click", ".watchList", function (event) {
         event.preventDefault();
         console.log("test");
         let imdbID = this.id;
