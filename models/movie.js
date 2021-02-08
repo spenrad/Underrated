@@ -1,3 +1,7 @@
+// var Movie = require("./movie");
+// var User = require("./user");
+var UserMovie = require("./usermovie");
+
 module.exports = function (sequelize, DataTypes) {
     var Movie = sequelize.define("Movie", {
         title: {
@@ -7,14 +11,12 @@ module.exports = function (sequelize, DataTypes) {
         },
         imdbID: {
             type: DataTypes.STRING,
+            allowNull: false,
             validate: { notNull: true }
         }
     });
-    Movie.associate = function (models) {
-        Movie.hasMany(models.UserMovie, {
-            // onDelete: "cascade"
-        });
-    }
+
 
     return Movie;
-}
+};
+

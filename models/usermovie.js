@@ -1,5 +1,9 @@
+var Movie = require("./movie");
+var User = require("./user");
+
 module.exports = function (sequelize, DataTypes) {
-    var UserMovie = sequelize.define("usermovie", {
+
+    var UserMovie = sequelize.define("UserMovie", {
         watched: {
             type: DataTypes.BOOLEAN,
             defaultValue: false  //defaults to unwatched
@@ -21,15 +25,22 @@ module.exports = function (sequelize, DataTypes) {
         }
     });
 
-    UserMovie.associate = function (models) {
-        UserMovie.belongsTo(models.movie, {
-            foreignKey: { allowNull: false }
+    UserMovie.associate = (models) => {
+
+        models.Movie.hasMany(models.UserMovie, {
+            as: 'UserMovies', foreignKey: 'movieID'
         });
-        UserMovie.belongsTo(models.user, {
+
+        models.UserMovie.belongsTo(models.Movie, {
+            foreignKey: 'movieID'
+        });
+
+        models.UserMovie.belongsTo(models.User, {
             foreignKey: { allowNull: false }
         })
-    };
 
+        models.User.hasMany(models.UserMovie, {});
+    }
 
     return UserMovie;
 }

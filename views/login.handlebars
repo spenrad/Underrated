@@ -37,9 +37,11 @@
                       <button class="fullForm createLOGIN">Login</button>
                     </div>
                     <div class="col-12 d-flex justify-content-center">
+
                       <a class="d-flex justify-content-center" href="createAccount.html">Create Account</a>
                     </div>
                   </div>
+
                 </div>
               </div>
             </div>
@@ -49,4 +51,25 @@
       </div>
       <div class="col-sm-12 col-md-12 col-mdcol-lg-3 d-flex justify-content-center"></div>
     </div>
-    <!-- END OF div column container for the login FORM/Input -->
+
+    
+
+     <!-- END OF div column container for the login FORM/Input -->
+
+<script>
+    $(document).on("click", "#login", function () {
+        
+        let newUser = {
+            username: $("#name").val(),
+            password: $("#pass").val()
+        };
+
+        $.ajax({
+            url: "/api/login",
+            method: "POST",
+            data: newUser
+        }).then(function(response) {
+            console.log(response);
+        })
+    })
+</script>

@@ -30,6 +30,7 @@
                     </div>
 
                     <div class="col-12 d-flex justify-content-center">
+
                       <Input class="fullFormLite createLOGIN"></Input>
                     </div>
 
@@ -44,6 +45,9 @@
                       <a href="login.html">Login</a>
                     </div>
                   </div>
+                                      
+                    </div>                   
+
                 </div>
               </div>
             </div>
@@ -53,6 +57,23 @@
       </div>
       <div class="col-sm-12 col-md-12 col-mdcol-lg-3 d-flex justify-content-center"></div>
     </div>
+    
+     <!-- END OF div column container for the login FORM/Input -->
 
+<script>
+    $(document).on("click", "#signup", function () {
+        
+        let newUser = {
+            username: $("#username").val(),
+            password: $("#password").val()
+        };
 
-    <!-- END OF div column container for the login FORM/Input -->
+        $.ajax({
+            url: "/api/signup",
+            method: "POST",
+            data: newUser
+        }).then(function(response) {
+            console.log(response);
+        })
+    })
+</script>
