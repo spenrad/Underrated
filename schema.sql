@@ -1,3 +1,1 @@
-DROP DATABASE IF EXISTS criterion;
-
 CREATE DATABASE criterion;
