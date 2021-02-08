@@ -3,11 +3,13 @@ var db = require("../models");
 module.exports = function (app) {
 
     app.post("/api/users", function (req, res) {
+        console.log(req.body);
         db.User.create({
             username: req.body.name,
             password: req.body.password
         }).then(function (dbUser) {
-            console.log(dbUser);
+            console.log("request:", req.body)
+            // console.log(dbUser);
         })
     })
 
@@ -17,6 +19,10 @@ module.exports = function (app) {
         }).then(function (dbMovie) {
             console.log(dbMovie);
         })
+    })
+
+    app.get("/api/films", function (req, res){
+        console.log("api route: ", req.body);
     })
 
 }
