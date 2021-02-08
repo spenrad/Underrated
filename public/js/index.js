@@ -42,9 +42,10 @@ $(document).ready(function () {
                     h3.text(response.Genre + " | " + "Rated: " + response.Rated);
                     p.text(response.Plot);
                     img.attr("src", response.Poster);
-                    btn1.text("Watch List").attr("type", "button").attr("id", response.imdbID).attr("class", "watchList btn btn-secondary");
 
-                    btn2.text("Seen it!").attr("id", "reviews");
+                    btn1.text("Watch List").attr("id", response.imdbID ).attr("class", "watchList btn btn-secondary").attr("name", response.Title);
+                    btn2.text("Seen it!").attr("id", response.imdbID ).attr("class", "watchList btn btn-secondary").attr("name", response.Title);
+
                     $(".searchResults").append(h2, h3, img, p, btn1, btn2);
 
                 })
@@ -83,19 +84,30 @@ $(document).ready(function () {
         })
     });
 
-    $(document).on("click", "#watchList", function (event) {
-        // event.preventDefault();
-        console.log("test");
-        // let imdbID = this.id;
-        // console.log("imdb: ", imdbID)
 
-        // var queryURL = "http://www.omdbapi.com/?apikey=b9e5adb0&i=";
-        // $.ajax({
-        //     url: queryURL + imdbID,
-        //     method: "GET"
-        // }).then(function (response) {
-        //     console.log(response);
-        // })
+    $(document).on("click", ".watchList", ".reviews", function (event) {
+        event.preventDefault();
+
+        console.log("test");
+        let imdbID = this.id;
+        let name = this.name
+        let newMovie = {
+            name : name,
+            imdbID : imdbID
+        }
+
+        $.ajax({
+            url: "/api/movies",
+            method: "POST",
+            data: newMovie
+        }).then(function (response) {
+            console.log(response);
+            if (response.err) {
+                window.location = "/signup";
+            }
+        })
+
+
     });
 
 });
