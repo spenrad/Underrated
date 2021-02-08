@@ -11,40 +11,44 @@ $(document).ready(function () {
             console.log(response);
 
             for (i = 0; i < response.Search.length; i++) {
-                queryURL = "http://www.omdbapi.com/?apikey=b9e5adb0&t=" + response.Search[i].Title;
+                queryURL = "http://www.omdbapi.com/?apikey=b9e5adb0&i=" + response.Search[i].imdbID;
                 $.ajax({
                     url: queryURL,
                     method: "GET"
-                }).then(function (response) {
-                    // console.log("title search:", response);
-                    var h2 = $("<h2>");
-                    var h3 = $("<h3>");
-                    var p = $("<p>");
-                    var img = $("<img>");
-                    var btn1 = $("<button>");
-                    var btn2 = $("<button>");
-                    let film = {
-                        title: response.Title,
-                        year: response.Year,
-                        genre: response.Genre,
-                        rating: response.Rated,
-                        plot: response.Plot,
-                        poster: response.Poster,
-                        imdbId: response.imdbID
-                    };
-                    movieObj.push(film);
+                }).then(function (res) {
+                    if (res.Poster == "N/A") {
+                        console.log(res.title, " doesn't have a poster");
+                    }
+                    else {
+                        console.log("title search:", res);
+                        var h2 = $("<h2>");
+                        var h3 = $("<h3>");
+                        var p = $("<p>");
+                        var img = $("<img>");
+                        var btn1 = $("<button>");
+                        var btn2 = $("<button>");
+                        let film = {
+                            title: res.Title,
+                            year: res.Year,
+                            genre: res.Genre,
+                            rating: res.Rated,
+                            plot: res.Plot,
+                            poster: res.Poster,
+                            imdbId: res.imdbID
+                        };
+                        movieObj.push(film);
 
 
-                    h2.text(response.Title + " (" + response.Year + ") ")
-                    h3.text(response.Genre + " | " + "Rated: " + response.Rated);
-                    p.text(response.Plot);
-                    img.attr("src", response.Poster);
+                        h2.text(res.Title + " (" + res.Year + ") ")
+                        h3.text(res.Genre + " | " + "Rated: " + res.Rated);
+                        p.text(res.Plot);
+                        img.attr("src", res.Poster);
 
-                    btn1.text("Watch List").attr("id", response.imdbID ).attr("class", "watchList btn btn-secondary").attr("name", response.Title);
-                    btn2.text("Seen it!").attr("id", response.imdbID ).attr("class", "reviews btn btn-secondary").attr("name", response.Title).attr("data-bs-toggle", "modal").attr("data-bs-target", "#exampleModal").attr("data-bs-whatever", response.Title);
+                        btn1.text("Watch List").attr("id", res.imdbID).attr("class", "watchList btn btn-secondary").attr("name", res.Title);
+                        btn2.text("Seen it!").attr("id", res.imdbID).attr("class", "reviews btn btn-secondary").attr("name", res.Title).attr("data-bs-toggle", "modal").attr("data-bs-target", "#exampleModal").attr("data-bs-whatever", res.Title);
 
-                    $(".searchResults").append(h2, h3, img, p, btn1, btn2);
-
+                        $(".searchResults").append(h2, h3, img, p, btn1, btn2);
+                    }
                 })
 
             }
@@ -109,7 +113,7 @@ $(document).ready(function () {
 
 
     $(document).on("click", "#testarooney", function (event) {
-        console.log("it's working");
+        console.log("button pressed");
         var hbsObject = {
             title: "movie title",
             year: "420",
