@@ -43,8 +43,8 @@ $(document).ready(function () {
                     p.text(response.Plot);
                     img.attr("src", response.Poster);
 
-                    btn1.text("Watch List").attr("id", response.imdbID).attr("class", "watchList btn btn-secondary").attr("name", response.Title);
-                    btn2.text("Seen it!").attr("id", response.imdbID).attr("class", "reviews btn btn-secondary").attr("name", response.Title);
+                    btn1.text("Watch List").attr("id", response.imdbID ).attr("class", "watchList btn btn-secondary").attr("name", response.Title);
+                    btn2.text("Seen it!").attr("id", response.imdbID ).attr("class", "reviews btn btn-secondary").attr("name", response.Title);
 
                     $(".searchResults").append(h2, h3, img, p, btn1, btn2);
 
@@ -58,33 +58,33 @@ $(document).ready(function () {
             console.log(movieObj)
 
 
-
-
-        });
-
-
-
-
-    });
-    $(document).on("click", ".addTestUser", function (event) {
-        console.log("add user")
-        let name = "Test User";
-        let password = "Test Password";
-        let newUser = {
-            name: name,
-            password: password
-        };
-    
-        $.ajax("/api/users", {
-            type: "POST",
-            data: newUser
-        }).then(function () {
-            console.log("added test user");
-        })
-    });
-    
-    
     $(document).on("click", ".watchList", function (event) {
+        event.preventDefault();
+
+        console.log("test");
+        let imdbID = this.id;
+        let name = this.name
+        let newMovie = {
+            name : name,
+            imdbID : imdbID
+        }
+
+        $.ajax({
+            url: "/api/movies",
+            method: "POST",
+            data: newMovie
+        }).then(function (response) {
+            console.log(response);
+            if (response.err) {
+                window.location = "/signup";
+            }
+        })
+
+
+    });
+
+    
+    $(document).on("click", ".reviews", function (event) {
         event.preventDefault();
     
         console.log("test");
@@ -105,8 +105,9 @@ $(document).ready(function () {
                 window.location = "/signup";
             }
         })
-    })
-    
+
+
+    });
 });
 
 
