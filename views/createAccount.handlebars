@@ -18,10 +18,10 @@
                 <div class="row d-flex justify-content-center">
            
                     <div class="col-12 d-flex justify-content-center">
-                             <Input></Input>
-                             <Input></Input>
-                             <button>Creat Account</button>
-                             <P><a href="">Login</a></P>                                       
+                             <Input id="username"></Input>
+                             <Input id="password"></Input>
+                             <button id="signup">Create Account</button>
+                             <P><a href="/login">Login</a></P>                                       
                     </div>                   
                 </div>
                 <!-- start of Nessted login input field -->
@@ -30,3 +30,21 @@
     </div>
      <!-- END OF div column container for the login FORM/Input -->
 </div>
+
+<script>
+    $(document).on("click", "#signup", function () {
+        
+        let newUser = {
+            username: $("#username").val(),
+            password: $("#password").val()
+        };
+
+        $.ajax({
+            url: "/api/signup",
+            method: "POST",
+            data: newUser
+        }).then(function(response) {
+            console.log(response);
+        })
+    })
+</script>
