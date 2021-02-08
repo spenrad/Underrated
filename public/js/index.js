@@ -35,16 +35,13 @@ $(document).ready(function () {
                     movieObj.push(film);
 
 
-
-
-
                     h2.text(response.Title + " (" + response.Year + ") ")
                     h3.text(response.Genre + " | " + "Rated: " + response.Rated);
                     p.text(response.Plot);
                     img.attr("src", response.Poster);
 
                     btn1.text("Watch List").attr("id", response.imdbID ).attr("class", "watchList btn btn-secondary").attr("name", response.Title);
-                    btn2.text("Seen it!").attr("id", response.imdbID ).attr("class", "reviews btn btn-secondary").attr("name", response.Title);
+                    btn2.text("Seen it!").attr("id", response.imdbID ).attr("class", "reviews btn btn-secondary").attr("name", response.Title).attr("data-bs-toggle", "modal").attr("data-bs-target", "#exampleModal").attr("data-bs-whatever", response.Title);
 
                     $(".searchResults").append(h2, h3, img, p, btn1, btn2);
 
