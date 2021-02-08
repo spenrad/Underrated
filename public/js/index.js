@@ -1,5 +1,4 @@
-document.addEventListener("DOMContentLoaded", function () {
-
+$(document).ready(function () {
     var button = $(".submitSearch");
 
     button.on("click", function () {
@@ -53,7 +52,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
 
             return movieObj;
-            
+
         }).then(function (movieObj) {
             console.log(movieObj)
             let movieThing = JSON.stringify(movieObj);
