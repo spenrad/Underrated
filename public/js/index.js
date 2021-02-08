@@ -27,7 +27,7 @@ $(document).ready(function () {
                     h3.text(response.Genre + " | " + "Rated: " + response.Rated);
                     p.text(response.Plot);
                     img.attr("src", response.Poster);
-                    btn1.text("Watch List").attr("id", response.imdbID ).attr("class", "watchList", "btn", "btn-secondary" ).attr("type", "button");
+                    btn1.text("Watch List").attr("id", response.imdbID ).attr("class", "watchList", "btn", "btn-secondary" ).attr("name", response.Title);
                     btn2.text("Seen it!").attr("id", "reviews");
                     $(".searchResults").append(h2, h3, img, p, btn1, btn2);
                    
@@ -53,19 +53,28 @@ $(document).ready(function () {
         })
     });
 
-    $("#watchList").on("click", function (event) {
-        // event.preventDefault();
+    $(document).on("click", ".watchList", function (event) {
+        event.preventDefault();
         console.log("test");
-        // let imdbID = this.id;
-        // console.log("imdb: ", imdbID)
+        let imdbID = this.id;
+        let name = this.name
+        let newMovie = {
+            name : name,
+            imdbID : imdbID
+        }
 
-        // var queryURL = "http://www.omdbapi.com/?apikey=b9e5adb0&i=";
-        // $.ajax({
-        //     url: queryURL + imdbID,
-        //     method: "GET"
-        // }).then(function (response) {
-        //     console.log(response);
-        // })
+        $.ajax({
+            url: "/api/movies",
+            method: "POST",
+            data: newMovie
+        }).then(function (response) {
+            console.log(response);
+            if (response.err) {
+                window.location = "/signup";
+            }
+        })
+
+
     });
 
 });
