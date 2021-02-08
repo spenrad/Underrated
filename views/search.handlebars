@@ -16,42 +16,10 @@
             </div>
 
             <div class="searchResults"></div>
-        <ul>
+            <button id="testarooney" class="btn btn-danger">Handlebars template</button>
+        <ul id= "testing">
             {{> movies/movie-block}}
         </ul>
         </div>
     </div>
 </div>
-
-<script src="./js/index.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.6/handlebars.min.js"></script>
-<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
-<script>
-    $(document).ready(function () {
-        // Register partial template before compiling the template.    
-        // "templateName" is name of the helper function.    
-        Handlebars.registerPartial('partial', 'I enroll in {{courseName}} course and my department is {{department}}.');
-        // Retrieve the template data from the HTML (jQuery is used here).    
-        var template = $('#basic-template1').html();
-        // Compile the template data into a function    
-        var templateScript = Handlebars.compile(template);
-        // Define data in JSON format.    
-        var context = {
-            "students": [{
-                "fullname": "Asma Khalid",
-                "department": "Computer Science"
-            }, {
-                "fullname": "Muhammad Bilal Amjad",
-                "department": "Computer Science"
-            }, {
-                "fullname": "John",
-                "department": "Computer Science"
-            }]
-        };
-        // Pass Data to template script.    
-        var html = templateScript(context);
-        console.log("hello")
-        // Insert the HTML code into the page    
-        $(document.body).append(html);
-    });    
-</script>

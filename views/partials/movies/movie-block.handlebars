@@ -1,23 +1,21 @@
-<script id="basic-template1" type="text/x-handlebars-template">
-    <div> {{#each students}} My name is <span style="color: blue"> <b>{{fullname }}</b></span>. {{> partial courseName = "Game Development" department = "IT"}} <br/><br/> {{/each}} </div>    
-</script>
+<template id="movie-block">
+    <div class="card" style="width: 18rem;">
+        <img class="card-img-top" src="{{poster}}" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">{{title}} ({{year}})</h5>
+            <p class="card-text">{{plot}}</p>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">{{rating}}</li>
+            <li class="list-group-item">{{genre}}</li>
+        </ul>
+        <div class="card-body">
+            <button type="button" class="btn btn-primary watchlist" id="{{imdbId}}" name={{title}}>Watch
+                List</button>
+            <button type="button" class="btn btn-secondary reviews" id="{{imdbId}}" name={{title}}>Write A
+                Review</button>
 
 
-<div class="card" style="width: 18rem;">
-  <img class="card-img-top" src="{{poster}}" alt="Card image cap">
-  <div class="card-body">
-    <h5 class="card-title">{{title}} ({{year}})</h5>
-    <p class="card-text">{{plot}}</p>
-  </div>
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item">{{rating}}</li>
-    <li class="list-group-item">{{genre}}</li>
-    <li class="list-group-item"></li>
-  </ul>
-  <div class="card-body">
-      <button type="button", class="btn btn-primary watchlist", id="{{imdbId}}", name={{title}}>Watch List</button>
-      <button type="button", class="btn btn-secondary reviews", id="{{imdbId}}", name={{title}}>Write A Review</button>
-
-      
-  </div>
-</div>
+        </div>
+    </div>
+</template>

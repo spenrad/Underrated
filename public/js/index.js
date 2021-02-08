@@ -57,7 +57,7 @@ $(document).ready(function () {
         }).then(function (movieObj) {
             console.log(movieObj)
 
-
+        });
             $(document).on("click", ".watchList", function (event) {
                 event.preventDefault();
 
@@ -110,5 +110,22 @@ $(document).ready(function () {
             });
         });
 
-    })
+
+    $(document).on("click", "#testarooney", function (event) {
+        console.log("it's working");
+        var hbsObject = {
+            title: "movie title",
+            year: "420",
+            genre: "funnies",
+            rating: "G",
+            plot: "plot plot plot plot plot plot plot plot plot plot plot",
+            poster: "https://m.media-amazon.com/images/M/MV5BODRlMjRkZGEtZWM2Zi00ZjYxLWE0MWUtMmM1YWM2NzZlOTE1XkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SX300.jpg",
+            imdbId: "tt0089218"
+        };
+        console.log(hbsObject);
+
+        var template = document.getElementById('movie-block').innerHTML;
+        var render = Handlebars.compile(template);
+        document.getElementById('testing').innerHTML = render(hbsObject);
+    });
 });
