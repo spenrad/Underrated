@@ -24,11 +24,13 @@ module.exports = function (app) {
       });
 
     app.post("/api/users", function (req, res) {
+        console.log(req.body);
         db.User.create({
             username: req.body.name,
             password: req.body.password
         }).then(function (dbUser) {
-            console.log(dbUser);
+            console.log("request:", req.body)
+            // console.log(dbUser);
         })
     })
 
