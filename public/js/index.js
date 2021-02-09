@@ -5,13 +5,13 @@ $(document).ready(function () {
         var movieObj = [];
         $(".searchResults").empty();
         $.ajax({
-            url: `http://www.omdbapi.com/?apikey=b9e5adb0&s=${$("#searchBar").val()}`,
+            url: `https://www.omdbapi.com/?apikey=b9e5adb0&s=${$("#searchBar").val()}`,
             method: "GET"
         }).then(function (response) {
             console.log(response);
 
             for (i = 0; i < response.Search.length; i++) {
-                queryURL = "http://www.omdbapi.com/?apikey=b9e5adb0&t=" + response.Search[i].Title;
+                queryURL = "https://www.omdbapi.com/?apikey=b9e5adb0&t=" + response.Search[i].Title;
                 $.ajax({
                     url: queryURL,
                     method: "GET"
@@ -41,7 +41,7 @@ $(document).ready(function () {
                     img.attr("src", response.Poster);
 
                     btn1.text("Watch List").attr("id", response.imdbID ).attr("class", "watchList btn btn-secondary").attr("name", response.Title);
-                    btn2.text("Seen it!").attr("id", response.imdbID ).attr("class", "reviews btn btn-secondary").attr("name", response.Title).attr("data-bs-toggle", "modal").attr("data-bs-target", "#exampleModal").attr("data-bs-whatever", response.Title);
+                    btn2.text("Seen it!").attr("id", response.imdbID ).attr("class", "reviews btn btn-secondary").attr("name", response.Title).attr("data-bs-toggle", "modal").attr("data-bs-target", "#exampleModal").attr("data-bs-whatever", response.imdbID);
 
                     $(".searchResults").append(h2, h3, img, p, btn1, btn2);
 
@@ -59,7 +59,7 @@ $(document).ready(function () {
                 type: "GET",
                 data: movieObj
             }).then(function () { console.log("end of client side get request") });
-        })
+        });
      
  
     });
@@ -85,10 +85,15 @@ $(document).ready(function () {
             if (response.err) {
                 window.location = "/signup";
             }
+            $.ajax({
+                url: "/api/usermovie/unseen",
+                method: "POST",
+                data: {id: newMovie.imdbID}
+            }).then(function (res) {
+              console.log(res)
+            })
         })
-
-
-    });
+        });
 
     
     $(document).on("click", ".reviews", function (event) {
@@ -113,7 +118,5 @@ $(document).ready(function () {
             }
         })
 
-
     });
 });
-

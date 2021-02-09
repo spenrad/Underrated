@@ -36,14 +36,14 @@
       <div class="modal-body">
         <form>
           <div class="mb-3">
-            <label for="message-text" class="col-form-label">Review:</label>
-            <textarea class="form-control" id="message-text"></textarea>
+            <label for="reviewText" class="col-form-label">Review:</label>
+            <textarea class="form-control" id="reviewText"></textarea>
           </div>
         </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Add to Reviews</button>
+        <button type="button" class="btn btn-primary addReview">Add to Reviews</button>
       </div>
     </div>
   </div>
@@ -55,11 +55,26 @@
 exampleModal.addEventListener('show.bs.modal', function (event) {
 
   var button = event.relatedTarget;
-  var movTitle = button.getAttribute('data-bs-whatever');
+  var movTitle= button.getAttribute('name'); 
+  var movID = button.getAttribute('data-bs-whatever');
   var modalTitle = exampleModal.querySelector('.modal-title');
   var modalBodyInput = exampleModal.querySelector('.modal-body input');
 
   modalTitle.textContent = 'Leave a review for ' + '"' + movTitle + '"';
-  modalBodyInput.value = movTitle;
+  $(".addReview").attr("id", movID);
 });
+
+$(".addReview").on("click", function (event) {
+    console.log("Button test" + ": " +$(this).attr("id"));
+    $.ajax({
+            url: "/api/usermovie/seen",
+            method: "POST",
+            data: {id : $(this).attr("id"),
+            review : $("#reviewText").val()}
+    }).then(function (res) {
+      console.log(res);
+    })
+})
+
+
 </script>

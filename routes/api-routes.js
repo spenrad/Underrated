@@ -42,9 +42,57 @@ module.exports = function (app) {
           }
         }).then(function (dbMovie) {
             console.log(dbMovie);
+            res.json(dbMovie);
         })
     })
 
+    app.post("/api/usermovie/seen", function (req, res) {
+      db.Movie.findOne({
+        where: {
+          imdbID: req.body.id,
+        },
+        
+      }).then(function (dbMovie) {
+          console.log("Movie ID:", dbMovie);
+          console.log(req.user);
+          db.UserMovie.findOrCreate({
+            
+            where: {
+            userID: req.user.id,
+            movieID: dbMovie.dataValues.id
+          },
+            defaults: {review: req.body.review,
+              watched: true,}})
+          .then(function (res) {
+            console.log(res);});
+          res.json(dbMovie);
+      })
+  });
+  
+  app.post("/api/usermovie/unseen", function (req, res) {
+    console.log("req.body:", req.body);
+    db.Movie.findOne({
+      where: {
+        imdbID: req.body.id
+      },
+
+    }).then(function (dbMovie) {
+      console.log("================");
+      console.log("Movie ID:", dbMovie);
+      console.log("================");
+        db.UserMovie.findOrCreate({
+          
+          where: {
+          watched: false,
+          userID: req.user.id,
+          movieID: dbMovie.dataValues.id
+        }
+        })
+        .then(function (res) {
+          console.log(res);});
+        res.json(dbMovie);
+    })
+});
 
 }
 

@@ -35,11 +35,13 @@ module.exports = function (sequelize, DataTypes) {
             foreignKey: 'movieID'
         });
 
-        models.UserMovie.belongsTo(models.User, {
-            foreignKey: { allowNull: false }
-        })
+        models.User.hasMany(models.UserMovie, {
+            as: 'UserMovies', foreignKey: 'userID'
+        });
 
-        models.User.hasMany(models.UserMovie, {});
+        models.UserMovie.belongsTo(models.User, {
+            foreignKey: 'userID'
+        });
     }
 
     return UserMovie;
