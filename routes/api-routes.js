@@ -83,7 +83,6 @@ module.exports = function (app) {
         db.UserMovie.findOrCreate({
           
           where: {
-          watched: false,
           userID: req.user.id,
           movieID: dbMovie.dataValues.id
         }
