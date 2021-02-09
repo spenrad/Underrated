@@ -1,28 +1,28 @@
 <!-- SEARCH PAGE WITH MAYBE A COOL ANIAMTED JS FEATURE. CONTENT TO GO IN THE {{{ body }}} -->
-		<div class="row">
-			<div class="col-12 d-flex justify-content-center">
-				<h1>A Movie Enthusiasts Community</h1>
-			</div>
-		</div>
-    
 <div class="row">
-    <div class="col-12 d-flex justify-content-center">
-        <h1>Building A Movie Enthusiasts Community</h1>
-    </div>
+  <div class="col-12 d-flex justify-content-center">
+    <h1>A Movie Enthusiasts Community</h1>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12 d-flex justify-content-center">
+    <h1>Building A Movie Enthusiasts Community</h1>
+  </div>
 </div>
 <div class="row">
-    <div class="col-12">
-        <div class="row">
-            <!-- ///////// START OF SEARCH <div> ////////////// -->
-            <div class="col-12">
-                <input id="searchBar"></input>
-                <button class="submitSearch"><i class="fas fa-search"></i></button>
-            </div>
+  <div class="col-12">
+    <div class="row">
+      <!-- ///////// START OF SEARCH <div> ////////////// -->
+      <div class="col-12">
+        <input id="searchBar"></input>
+        <button class="submitSearch"><i class="fas fa-search"></i></button>
+      </div>
 
-            <div class="col-12 searchResults justify-content-center"></div>
+      <div class="col-12 searchResults justify-content-center"></div>
 
-        </div>
     </div>
+  </div>
 </div>
 
 <div class="modal fade" id="reviewModal" tabindex="-1" aria-labelledby="reviewModalLabel" aria-hidden="true">
@@ -33,6 +33,22 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
+        <!-- ////////////// STARS STARS STARS STARS//////////// -->
+        <div class="stars d-flex justify-content-start hidden">
+          <form action="">
+            <input class="star star-5" id="star-5" type="radio" name="star" />
+            <label class="star star-5" for="star-5"></label>
+            <input class="star star-4" id="star-4" type="radio" name="star" />
+            <label class="star star-4" for="star-4"></label>
+            <input class="star star-3" id="star-3" type="radio" name="star" />
+            <label class="star star-3" for="star-3"></label>
+            <input class="star star-2" id="star-2" type="radio" name="star" />
+            <label class="star star-2" for="star-2"></label>
+            <input class="star star-1" id="star-1" type="radio" name="star" />
+            <label class="star star-1" for="star-1"></label>
+          </form>
+        </div>
+        <!-- ////////////// END STARS END STARS END STARS END STARS//////////// -->
         <form>
           <div class="mb-3">
             <label for="reviewText" class="col-form-label">Review:</label>
@@ -59,9 +75,10 @@ reviewModal.addEventListener('show.bs.modal', function (event) {
   var modalTitle = reviewModal.querySelector('.modal-title');
   var modalBodyInput = reviewModal.querySelector('.modal-body input');
 
-  modalTitle.textContent = 'Leave a review for ' + '"' + movTitle + '"';
-  $(".addReview").attr("id", movID);
-});
+
+    modalTitle.textContent = 'Leave a review for ' + '"' + movTitle + '"';
+    $(".addReview").attr("id", movID);
+  });
 
 function eraseReview() {
   $("#reviewText").val("");
@@ -70,16 +87,19 @@ function eraseReview() {
 $(".addReview").on("click", function (event) {
     console.log("Button test" + ": " +$(this).attr("id"));
     
+
     $.ajax({
-            url: "/api/usermovie/seen",
-            method: "POST",
-            data: {id : $(this).attr("id"),
-            review : $("#reviewText").val()}
+      url: "/api/usermovie/seen",
+      method: "POST",
+      data: {
+        id: $(this).attr("id"),
+        review: $("#reviewText").val()
+      }
     }).then(function (res) {
       console.log(res);
       eraseReview();
     })
-})
+  })
 
 
 </script>
