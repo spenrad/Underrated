@@ -1,28 +1,32 @@
 <!-- SEARCH PAGE WITH MAYBE A COOL ANIAMTED JS FEATURE. CONTENT TO GO IN THE {{{ body }}} -->
-		<div class="row">
-			<div class="col-12 d-flex justify-content-center">
-				<h1>A Movie Enthusiasts Community</h1>
-			</div>
-		</div>
-    
 <div class="row">
-    <div class="col-12 d-flex justify-content-center">
-        <h1>Building A Movie Enthusiasts Community</h1>
-    </div>
+  <div class="col-12 d-flex justify-content-center">
+    <h1>A Movie Enthusiasts Community</h1>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12 d-flex justify-content-center">
+    <h1>Building A Movie Enthusiasts Community</h1>
+  </div>
 </div>
 <div class="row">
-    <div class="col-12">
-        <div class="row">
-            <!-- ///////// START OF SEARCH <div> ////////////// -->
-            <div class="col-12">
-                <input id="searchBar"></input>
-                <button class="submitSearch"><i class="fas fa-search"></i></button>
-            </div>
+  <div class="col-12">
+    <div class="row">
+      <!-- ///////// START OF SEARCH <div> ////////////// -->
+      <div class="col-12">
+        <input id="searchBar"></input>
+        <button class="submitSearch"><i class="fas fa-search"></i></button>
+      </div>
 
-            <div class="col-12 searchResults justify-content-center"></div>
+      <div class="col-12 searchResults justify-content-center"></div>
+      {{#each movies}}
+     
+      {{> movies/movie-block}}
 
-        </div>
+      {{/each}}
     </div>
+  </div>
 </div>
 
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -50,30 +54,32 @@
 
 <script src="./js/index.js"></script>
 <script>
-    var exampleModal = document.getElementById('exampleModal');
-exampleModal.addEventListener('show.bs.modal', function (event) {
+  var exampleModal = document.getElementById('exampleModal');
+  exampleModal.addEventListener('show.bs.modal', function (event) {
 
-  var button = event.relatedTarget;
-  var movTitle= button.getAttribute('name'); 
-  var movID = button.getAttribute('data-bs-whatever');
-  var modalTitle = exampleModal.querySelector('.modal-title');
-  var modalBodyInput = exampleModal.querySelector('.modal-body input');
+    var button = event.relatedTarget;
+    var movTitle = button.getAttribute('name');
+    var movID = button.getAttribute('data-bs-whatever');
+    var modalTitle = exampleModal.querySelector('.modal-title');
+    var modalBodyInput = exampleModal.querySelector('.modal-body input');
 
-  modalTitle.textContent = 'Leave a review for ' + '"' + movTitle + '"';
-  $(".addReview").attr("id", movID);
-});
+    modalTitle.textContent = 'Leave a review for ' + '"' + movTitle + '"';
+    $(".addReview").attr("id", movID);
+  });
 
-$(".addReview").on("click", function (event) {
-    console.log("Button test" + ": " +$(this).attr("id"));
+  $(".addReview").on("click", function (event) {
+    console.log("Button test" + ": " + $(this).attr("id"));
     $.ajax({
-            url: "/api/usermovie/seen",
-            method: "POST",
-            data: {id : $(this).attr("id"),
-            review : $("#reviewText").val()}
+      url: "/api/usermovie/seen",
+      method: "POST",
+      data: {
+        id: $(this).attr("id"),
+        review: $("#reviewText").val()
+      }
     }).then(function (res) {
       console.log(res);
     })
-})
+  })
 
 
 </script>

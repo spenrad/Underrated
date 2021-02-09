@@ -15,14 +15,31 @@ router.get('/signup', function (req, res) {
     res.render('createAccount');
 })
 
-router.get('/user/:profile', function(req, res) {
-    var  profile = req.params.profile;
+router.get('/user/:profile', function (req, res) {
+    console.log("==========================================")
+    var profile = req.params.profile;
+    console.log(profile);
     db.User.findOne({
         where: {
-            username : profile
+            username: profile
         }
-    });
-    res.render('profile');
+    }).then(function (results) {
+        console.log(results);
+        console.log("========")
+        console.log(results.dataValues);
+        var hbsObject = {
+            
+                
+                    user: results.dataValues.username
+                
+            
+
+        }
+        console.log(hbsObject);
+        res.render("profile", hbsObject);
+    })
+
+
 })
 
 module.exports = router;
