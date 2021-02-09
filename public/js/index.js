@@ -45,7 +45,7 @@ $(document).ready(function () {
                         img.attr("src", res.Poster);
 
                         btn1.text("Watch List").attr("id", res.imdbID).attr("class", "watchList btn btn-secondary").attr("name", res.Title);
-                        btn2.text("Seen it!").attr("id", res.imdbID).attr("class", "reviews btn btn-secondary").attr("name", res.Title).attr("data-bs-toggle", "modal").attr("data-bs-target", "#exampleModal").attr("data-bs-whatever", res.imdbID);
+                        btn2.text("Seen it!").attr("id", res.imdbID).attr("class", "reviews btn btn-secondary").attr("name", res.Title).attr("data-bs-toggle", "modal").attr("data-bs-target", "#reviewModal").attr("data-bs-whatever", res.imdbID);
 
                         $(".searchResults").append(h2, h3, img, p, btn1, btn2);
                     }

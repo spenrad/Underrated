@@ -93,5 +93,11 @@ module.exports = function (app) {
     })
 });
 
+app.get("/logout", function(req, res) {
+  console.log(req.user, "is logging out...")
+  req.logout();
+  console.log("Logged out", req.user);
+});
+
 }
 
