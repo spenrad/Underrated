@@ -2,7 +2,7 @@
     <div class="box">
         <div class="col-12 d-flex justify-content-center">
             <div class="row">
-                <div id="movie-block">
+                <div id="viewAllofThisUsersReviews-block">
                     <div class="col-4">
                         <img class="posterSize" src="{{poster}}" alt="Movie Poster">
                     </div>
@@ -23,17 +23,13 @@
                             <div class="col-12">
                             <p class="fullFormLite">{{plot}}</p>
                             </div>
-                            <div class="col-6">
-                                <button type="button" class="fullForm btn btn-primary watchlist" id="{{imdbId}}"
-                                    name={{title}}>Watch
-                                    List</button>
-                            </div>
-                            <div class="col-6">
-                                <button type="button" class="fullForm btn btn-secondary reviews" id="{{imdbId}}"
-                                    name={{title}}>Write A
-                                    Review</button>
-                            </div>
                         </div>
+                    </div>
+                    <div class="col-12">
+                        <p class="fullFormLite">{{userName}}</p>
+                    </div>
+                    <div class="col-12">
+                        <p class="fullFormLite">{{review}}</p>
                     </div>
                 </div>
             </div>
