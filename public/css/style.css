@@ -85,6 +85,63 @@ nav {
 .avatarSize{
     width: 200px;
 }
-posterSize{
+.posterSize{
     width: 200px;
 }
+
+/* ///////////// stars fly out /////////////////// */
+.hidden{
+    width:120px;
+    height: 70px;
+    overflow:hidden;
+}
+div.stars {
+    width: 100%;
+    display: inline-block;
+    padding-left: 40px;
+    
+  }
+  
+  input.star { display: none; }
+  
+  label.star {
+    float: right;
+    padding: 10px;
+    font-size: 36px;
+    color: #444;
+    transition: all .3s;
+  }
+  
+  input.star:checked ~ label.star:before {
+    content: '\f005';
+    color: rgb(0, 217, 255);
+    transition: all .25s;
+  }
+  
+  input.star-5:checked ~ label.star:before {
+    color: rgba(8, 189, 245, 0.842);
+    text-shadow: 0 0 20px rgb(26, 192, 214);
+  }
+  
+  input.star-1:checked ~ label.star:before { 
+      color:  rgb(0, 217, 255); 
+    }
+  
+  label.star:hover {
+       transform: rotate(-15deg) scale(1.2);
+       color: rgb(119, 189, 255);
+ }
+ div.hidden:hover {
+    width: 100%;
+    transition: all 3s;
+ }
+  
+  label.star:before {
+    content: '\f006';
+    font-family: FontAwesome;
+  }
+
+/* input.star:checked ~ .hidden:before {
+      width: 100%;
+      overflow: visible;
+  } */
