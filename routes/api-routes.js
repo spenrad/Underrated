@@ -77,9 +77,9 @@ module.exports = function (app) {
       },
 
     }).then(function (dbMovie) {
-      console.log("================");
-      console.log("Movie ID:", dbMovie);
-      console.log("================");
+      // console.log("================");
+      // console.log("Movie ID:", dbMovie);
+      // console.log("================");
         db.UserMovie.findOrCreate({
           
           where: {
