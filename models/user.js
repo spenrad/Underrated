@@ -21,11 +21,6 @@ module.exports = function (sequelize, DataTypes) {
         }
     });
 
-    // UserMovie.belongsTo(User, {
-    //     foreignKey: { allowNull: false }
-    // })
-
-    // User.hasMany(UserMovie, {});
     User.prototype.validPassword = function(password) {
         return bcrypt.compareSync(password, this.password);
       };

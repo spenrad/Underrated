@@ -2,7 +2,7 @@ $(document).ready(function () {
     var button = $(".submitSearch");
 
     button.on("click", function () {
-        var movieObj = [];
+        var movieObj = {};
         $(".searchResults").empty();
         $.ajax({
             url: `https://www.omdbapi.com/?apikey=b9e5adb0&s=${$("#searchBar").val()}`,

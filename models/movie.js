@@ -1,5 +1,3 @@
-// var Movie = require("./movie");
-// var User = require("./user");
 var UserMovie = require("./usermovie");
 
 module.exports = function (sequelize, DataTypes) {

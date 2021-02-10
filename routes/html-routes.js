@@ -18,7 +18,6 @@ router.get('/signup', function (req, res) {
 })
 
 router.get('/user/:profile', function (req, res) {
-    // const hbsObject = {movies: []}
     var hbsObject = {};
     console.log("==========================================")
     var profile = req.params.profile;
@@ -35,10 +34,6 @@ router.get('/user/:profile', function (req, res) {
         console.log(userInf.dataValues);
 
         hbsObject.userName = userInf.dataValues.username;
-        // res.render("profile", hbsObjectName)
-
-
-        // console.log(hbsObject);
 
         db.UserMovie.findAll({
             where: {
@@ -85,31 +80,11 @@ router.get('/user/:profile', function (req, res) {
 
                 res.render("profile", hbsObject);
             })
-            // console.log("MOVIE INFO =========================")
-       
-
-
+           
         })
 
-        // for (i = 0; i < moviesArr.length; i++) {
-
-
-
     })
-})
-// }
-// Promise.all(promises)
-// .then(function () {
-//     var hbsObject = {
-//         movies: moviesArr
-//     }
-//     console.log("FINAL OBJECT =====================")
-//     console.log(hbsObject)
-//     res.render("profile", hbsObject)
-// })
-
-
-
+});
 
 
 
