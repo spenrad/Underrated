@@ -35,17 +35,17 @@
       <div class="modal-body">
         <!-- ////////////// STARS STARS STARS STARS//////////// -->
         <div class="stars d-flex justify-content-start hidden">
-          <form action="">
-            <input class="star star-5" id="star-5" type="radio" name="star" />
-            <label class="star star-5" for="star-5"></label>
-            <input class="star star-4" id="star-4" type="radio" name="star" />
-            <label class="star star-4" for="star-4"></label>
-            <input class="star star-3" id="star-3" type="radio" name="star" />
-            <label class="star star-3" for="star-3"></label>
-            <input class="star star-2" id="star-2" type="radio" name="star" />
-            <label class="star star-2" for="star-2"></label>
-            <input class="star star-1" id="star-1" type="radio" name="star" />
-            <label class="star star-1" for="star-1"></label>
+          <form action="" class="starRater">
+            <input class="star star-5" id="5" type="radio" name="star" />
+            <label class="star star-5" for="5"></label>
+            <input class="star star-4" id="4" type="radio" name="star" />
+            <label class="star star-4" for="4"></label>
+            <input class="star star-3" id="3" type="radio" name="star" />
+            <label class="star star-3" for="3"></label>
+            <input class="star star-2" id="2" type="radio" name="star" />
+            <label class="star star-2" for="2"></label>
+            <input class="star star-1" id="1" type="radio" name="star" />
+            <label class="star star-1" for="1"></label>
           </form>
         </div>
         <!-- ////////////// END STARS END STARS END STARS END STARS//////////// -->
@@ -84,22 +84,38 @@ function eraseReview() {
   $("#reviewText").val("");
 };
 
+function eraseRating() {
+  $(".starRater").trigger("reset");
+};
+
+function removeValue() {
+  $(".addReview").removeAttr("value");
+}
+
+$(".star").on("click", function(event) {
+  $(".addReview").attr("value", this.id);
+});
+
 $(".addReview").on("click", function (event) {
     console.log("Button test" + ": " +$(this).attr("id"));
     
-
     $.ajax({
       url: "/api/usermovie/seen",
       method: "POST",
       data: {
         id: $(this).attr("id"),
+        rating: $(this).attr("value"),
         review: $("#reviewText").val()
       }
     }).then(function (res) {
       console.log(res);
       eraseReview();
+      eraseRating();
+      removeValue();
+
     })
   })
+
 
 
 </script>
