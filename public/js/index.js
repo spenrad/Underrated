@@ -82,15 +82,6 @@ $(document).ready(function () {
                     }
                 })
 
-        $.ajax({
-            url: "/api/movies",
-            method: "POST",
-            data: newMovie
-        }).then(function (response) {
-            console.log(response);
-            if (response.err) {
-                window.location = "/signup";
-            }
             $.ajax({
                 url: "/api/usermovie/unseen",
                 method: "POST",
@@ -98,7 +89,6 @@ $(document).ready(function () {
             }).then(function (res) {
               console.log(res)
             })
-        })
         });
 
             $(document).on("click", ".reviews", function (event) {

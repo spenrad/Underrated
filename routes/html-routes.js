@@ -32,13 +32,14 @@ router.get('/user/:profile', function (req, res) {
             username: profile
         }
     }).then(function (userInf) {
-
+        
         console.log("user info: ", userInf);
         console.log("========")
         console.log(userInf.dataValues);
         const hbsObjectName = {
             userName: userInf.dataValues.username
         };
+        res.render("profile", hbsObjectName)
         // res.render("profile", hbsObjectName)
     
         // console.log(hbsObject);
