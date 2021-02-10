@@ -62,6 +62,7 @@ module.exports = function (app) {
             movieID: dbMovie.dataValues.id
           },
             defaults: {review: req.body.review,
+              rating: req.body.rating,
               watched: true,}})
           .then(function (res) {
             console.log(res);});
