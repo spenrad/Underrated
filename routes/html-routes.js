@@ -55,7 +55,6 @@ router.get('/user/:profile', function (req, res) {
             console.log("review info=========================== ", "\n", reviewInf)
 
             for (i = 0; i < reviewInf.length; i++) {
-                
                 db.Movie.findOne({
                     where: {
                         ID: reviewInf[i].dataValues.movieID
