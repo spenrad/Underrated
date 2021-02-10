@@ -1,107 +1,110 @@
 <!-- PROFILE PAGE CONTENT TO GO IN THE {{{ body }}} -->
 <!-- ///////// Page Tile Row ////////////// -->
-    <div class="row">
-      <div class="col-12 d-flex justify-content-center">
-        <h1>My Movie Member Profile</h1>
+<div class="row">
+  <div class="col-12 d-flex justify-content-center">
+    <h1>My Movie Member Profile</h1>
+  </div>
+</div>
+
+<!-- ///////// START OF Two Column Content ////////////// -->
+<div class="row">
+  <!-- ///////// START OF First Column ////////////// -->
+  <div class="col-sm-12 col-lg-6">
+    <!-- ///////// START OF Profile Info ////////////// -->
+    <div class="oBox">
+      <div class="row">
+        <div class="col-12 d-flex justify-content-center">
+          <h2>{{userName}}</h2>
+        </div>
       </div>
-    </div>
+      <div class="row">
+        <div class="col-12 d-flex justify-content-center">
 
-    <!-- ///////// START OF Two Column Content ////////////// -->
-    <div class="row">
-      <!-- ///////// START OF First Column ////////////// -->
-      <div class="col-sm-12 col-lg-6">
-        <!-- ///////// START OF Profile Info ////////////// -->
-        <div class="oBox">
+          <!-- start of Nessted PROFILE info -->
           <div class="row">
-            <div class="col-12 d-flex justify-content-center">
-              <h2>{{userName}}</h2>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-12 d-flex justify-content-center">
-
-              <!-- start of Nessted PROFILE info -->
+            <div class="col-12 d-flex justify-content-center box">
               <div class="row">
-                <div class="col-12 d-flex justify-content-center box">
+                <div class="col-4 d-flex justify-content-center">
+
+                  <img src="../img/avatar.jpg" alt="avatar" style="width:150px;height:150px;" />
+                </div>
+
+                <div class="col-8">
+                  <!-- start of Sub-Nessted PROFILE info: #ofUserReviews and buttons-->
                   <div class="row">
-                    <div class="col-4 d-flex justify-content-center">
-
-                      <img src="../img/avatar.jpg" alt="avatar" style="width:150px;height:150px;" />
+                    <div class="col-12">
+                      <p class="fullFormLite">(# of Review's Created)</p>
                     </div>
-
-                    <div class="col-8">
-                      <!-- start of Sub-Nessted PROFILE info: #ofUserReviews and buttons-->
-                      <div class="row">
-                        <div class="col-12">
-                          <p class="fullFormLite">(# of Review's Created)</p>
-                        </div>
-                        <div class="col-12">
-                          <button class="fullForm">Edit Profile</button>
-                        </div>
-                        <div class="col-12">
-                          <button class="fullForm">Logout</button>
-                        </div>
-                      </div>
-                      <!-- END of Sub-Nessted PROFILE info: #ofUserReviews and buttons-->
+                    <div class="col-12">
+                      <button class="fullForm">Edit Profile</button>
+                    </div>
+                    <div class="col-12">
+                      <button class="fullForm">Logout</button>
                     </div>
                   </div>
+                  <!-- END of Sub-Nessted PROFILE info: #ofUserReviews and buttons-->
                 </div>
               </div>
-              <!-- END Nessted PROFILE info -->
             </div>
           </div>
-        </div>
-        <div class="oBox">
-
-          <div class="row d-flex justify-content-center">
-            <!-- START OF div column container for the Watch List Section-->
-            <!-- define a border for this <div> below -->
-            <div class="col-12 d-flex justify-content-center">
-              <h2>My Watch List<h2>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-12">
-              <!-- ///////// MOVIE List Rendered in HERE ////////////// -->
-              <section class="box"> THIS IS PLACE HOLDER YEXYLorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit sunt, pariatur
-                fugiat voluptatum eligendi officiis voluptatem non beatae soluta ipsum corporis ad architecto excepturi.
-                Delectus dicta perferendis voluptas quae maxime. Lorem ipsum dolor sit amet consectetur, adipisicing
-                elit. Enim illo doloribus autem nam natus iure aut, officiis est animi dicta! Necessitatibus placeat
-                ipsa earum eos? Odit voluptates natus aliquid fuga? Lorem, ipsum dolor sit amet consectetur adipisicing
-                elit. Quam tempore, quasi totam ex dolorem dolor necessitatibus corrupti quia beatae commodi unde itaque
-                consequatur assumenda magni ipsum quod aperiam sequi fuga?</section>
-            </div>
-          </div>
+          <!-- END Nessted PROFILE info -->
         </div>
       </div>
-      <!-- ///////// END First Column Content ////////////// -->
-
-
-      <!-- ///////// START OF 2nd Column ////////////// -->
-      <div class="col-sm-12 col-lg-6">
-        <div class="oBox">
-          <div class="row d-flex justify-content-center">
-            <!-- START OF div column container for the Watch List Section-->
-            <!-- define a border for this <div> below -->
-            <div class="col-12 d-flex justify-content-center">
-              <h2>My Reviews<h2>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-12">
-              <!-- ///////// MOVIE List Rendered in HERE ////////////// -->
-              <section class="box">THIS IS PLACE HOLDER Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit sunt, pariatur
-                fugiat voluptatum eligendi officiis voluptatem non beatae soluta ipsum corporis ad architecto excepturi.
-                Delectus dicta perferendis voluptas quae maxime. Lorem ipsum dolor sit amet consectetur, adipisicing
-                elit. Enim illo doloribus autem nam natus iure aut, officiis est animi dicta! Necessitatibus placeat
-                ipsa earum eos? Odit voluptates natus aliquid fuga? Lorem, ipsum dolor sit amet consectetur adipisicing
-                elit. Quam tempore, quasi totam ex dolorem dolor necessitatibus corrupti quia beatae commodi unde itaque
-                consequatur assumenda magni ipsum quod aperiam sequi fuga?</section>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- ///////// END OF 2nd Column ////////////// -->
     </div>
-    <!-- ///////// END OF Two Column Content ////////////// -->
-  
+    <div class="oBox">
+
+      <div class="row d-flex justify-content-center">
+        <!-- START OF div column container for the Watch List Section-->
+        <!-- define a border for this <div> below -->
+        <div class="col-12 d-flex justify-content-center">
+          <h2>My Watch List<h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <!-- ///////// MOVIE List Rendered in HERE ////////////// -->
+          <section class="box">  
+            {{#each movies}}
+            
+            {{> movies/movieProfile-block }}
+            
+            {{/each}}
+</section>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ///////// END First Column Content ////////////// -->
+
+
+  <!-- ///////// START OF 2nd Column ////////////// -->
+  <div class="col-sm-12 col-lg-6">
+    <div class="oBox">
+      <div class="row d-flex justify-content-center">
+        <!-- START OF div column container for the Watch List Section-->
+        <!-- define a border for this <div> below -->
+        <div class="col-12 d-flex justify-content-center">
+          <h2>My Reviews<h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <!-- ///////// MOVIE List Rendered in HERE ////////////// -->
+
+          <section class="box">
+            {{#each reviews}}
+            
+            {{#if watched}}
+            {{> movies/UserReviews-block }}
+            {{/if}}
+            
+            {{/each}}
+
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ///////// END OF 2nd Column ////////////// -->
+</div>
+<!-- ///////// END OF Two Column Content ////////////// -->

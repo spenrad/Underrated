@@ -62,6 +62,7 @@ module.exports = function (app) {
             movieID: dbMovie.dataValues.id
           },
             defaults: {review: req.body.review,
+              rating: req.body.rating,
               watched: true,}})
           .then(function (res) {
             console.log(res);});
@@ -77,9 +78,9 @@ module.exports = function (app) {
       },
 
     }).then(function (dbMovie) {
-      console.log("================");
-      console.log("Movie ID:", dbMovie);
-      console.log("================");
+      // console.log("================");
+      // console.log("Movie ID:", dbMovie);
+      // console.log("================");
         db.UserMovie.findOrCreate({
           
           where: {
