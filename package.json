@@ -1,5 +1,5 @@
 {
-  "name": "UCBCBMDB",
+  "name": "Underrated",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
@@ -9,15 +9,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/spenrad/UCBCBMDB.git"
+    "url": "git+https://github.com/spenrad/Underrated.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/spenrad/UCBCBMDB/issues"
+    "url": "https://github.com/spenrad/Underrated/issues"
   },
-  "homepage": "https://github.com/spenrad/UCBCBMDB#readme",
+  "homepage": "https://github.com/spenrad/Underrated#readme",
   "dependencies": {
     "axios": "^0.21.1",
     "bcryptjs": "^2.4.3",
