@@ -1,6 +1,13 @@
+body {
+    background-image: url(../img/background.jpg);
+    background-attachment: fixed;
+    background-size: 100%;
+}
+
 h1 {
     margin-top: 50px;
     margin-bottom: 50px;
+    color : rgb(212, 189, 191);
 }
 h2 {
     margin-top: 50px;
@@ -56,12 +63,21 @@ h2 {
 /* //////////// search.html Styling /////// */
 #searchBar {
     width: 400px;
-    height: 100%;
+    background-color: rgb(180,172,180);
+    outline: none;
 }
-.searchButton {
+.submitSearch {
     width: 70px;
+    height: 35px;
+    background-color:rgb(90, 20, 24);
+}
 
-} 
+#searchIcon{
+    justify-content: center;
+    align-items: center;
+};
+
+
 .block {
     display: inline;
 }
@@ -105,10 +121,13 @@ img {
 /* /////////// Navigation Styling //////////// */
 .nav-link {
     padding-top: 15px;
+    font-weight: bold;
+    font-size: 1.125em;
 }
 
 nav {
     display: inline;
+    background-color:rgb(90, 20, 24);
 }
 .FILM {
     font-size: 2em;
