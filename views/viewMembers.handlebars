@@ -10,8 +10,10 @@
 
 
 <div class="row">
-    <div class="col-12">
-          <!-- Render All Movie Members  -->
+    <div class="col-12" id="memberDisplay">
+{{#each user}}
+{{> movies/member-block }}
+{{/each}}
     </div>
 </div>
 
