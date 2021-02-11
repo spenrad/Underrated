@@ -31,7 +31,7 @@ router.get('/user/:profile', function (req, res) {
 
         console.log("user info: ", userInf);
         console.log("========")
-        console.log(userInf.dataValues);
+       
 
         hbsObject.userName = userInf.dataValues.username;
         hbsObject.img = userInf.dataValues.imgURL
