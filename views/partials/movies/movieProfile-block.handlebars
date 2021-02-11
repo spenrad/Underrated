@@ -4,7 +4,7 @@
             <div class="row">
                 <div id="movieProfile-block">
                     <div class="col-4">
-                        <img class="posterSize" src="{{Poster}}" alt="Movie Poster">
+                        <img class="posterSize" src="{{data.Poster}}" alt="Movie Poster">
                         </div>
                         <div class="col-8">
                         <div class="row">
@@ -12,20 +12,20 @@
                             <p class="">{{Title}}</p>
                             </div>
                             <div class="col-12">
-                            <p class="fullFormLite">({{Year}})</p>
+                            <p class="fullFormLite">({{data.Year}})</p>
                             </div>
                             <div class="col-6">
-                            <p class="fullFormLite">{{Rated}}</p>
+                            <p class="fullFormLite">{{data.Rated}}</p>
                             </div>
                             <div class="col-6">
-                            <p class="fullFormLite">{{Genre}}</p>
+                            <p class="fullFormLite">{{data.Genre}}</p>
                             </div>
                             <div class="col-12">
-                            <p class="fullFormLite">{{Plot}}</p>
+                            <p class="fullFormLite">{{data.Plot}}</p>
                             </div>
                             <div class="col-12">
                                 <button type="button" class="fullForm btn btn-secondary reviews" id="{{imdbID}}"
-                                    name={{Title}}>Write A
+                                    name={{data.Title}}>Write A
                                     Review</button>
                             </div>
                         </div>

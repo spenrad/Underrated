@@ -17,9 +17,10 @@ module.exports = function (sequelize, DataTypes) {
         },
         imgURL: {
             type: DataTypes.STRING,
-            validate: { isUrl: true }
+            allowNull: true
         }
     });
+
 
     User.prototype.validPassword = function(password) {
         return bcrypt.compareSync(password, this.password);

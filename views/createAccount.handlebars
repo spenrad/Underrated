@@ -65,8 +65,10 @@
         
         let newUser = {
             username: $("#username").val(),
-            password: $("#password").val()
+            password: $("#password").val(),
+            imgURL: $("#img").val()
         };
+          
 
         $.ajax({
             url: "/api/signup",
