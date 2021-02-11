@@ -32,9 +32,9 @@ $(document).ready(function () {
                         <div class="col-md-3">
                           <img src="${res.Poster}" style="width:150px;height:222px;"/>
                         </div>
-                        <div class="col-md-7">
+                        <div class="col-md-7" id="details">
                           <h2>${res.Title + " (" + res.Year + ") "}</h2>
-                          <h3>${res.Genre + " | " + "Rated: " + res.Rated}</h3>
+                          <h4>${res.Genre + " | " + "Rated: " + res.Rated}</h4>
                           <p>${res.Plot}</p>
                           <button id="${res.imdbID}" class="btn watchList" name="${res.Title}">Watch List</button>
                           <button id="${res.imdbID}" class="btn reviews" name="${res.Title}" data-bs-toggle="modal" data-bs-target="#reviewModal" data-bs-whatever="${res.imdbID}">Seen It!</button>

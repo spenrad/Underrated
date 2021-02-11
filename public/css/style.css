@@ -90,6 +90,10 @@ h1 {
     padding:10px;
 }
 
+#details{
+    background-color: rgba(0, 0, 0, 0.329);
+}
+
 
 .block {
     display: inline;
