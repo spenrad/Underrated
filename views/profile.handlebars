@@ -63,13 +63,11 @@
       <div class="row">
         <div class="col-12">
           <!-- ///////// MOVIE List Rendered in HERE ////////////// -->
-          <section class="box">  
+          <section class="box">
             {{#each movies}}
-            
             {{> movies/movieProfile-block }}
-            
             {{/each}}
-</section>
+          </section>
         </div>
       </div>
     </div>
@@ -93,13 +91,10 @@
 
           <section class="box">
             {{#each reviews}}
-            
             {{#if watched}}
             {{> movies/UserReviews-block }}
             {{/if}}
-            
             {{/each}}
-
           </section>
         </div>
       </div>
