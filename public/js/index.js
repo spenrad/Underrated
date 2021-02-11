@@ -24,33 +24,26 @@ $(document).ready(function () {
               console.log(res.title, " doesn't have a poster");
             } else {
               console.log("title search:", res);
-              var h2 = $("<h2>");
-              var h3 = $("<h3>");
-              var p = $("<p>");
-              var img = $("<img>");
-              var btn1 = $("<button>");
-              var btn2 = $("<button>");
+              
+        var html = `
+                    <br>
+                    <div class="searchBlock">
+                      <div class="row">
+                        <div class="col-md-3">
+                          <img src="${res.Poster}" style="width:150px;height:222px;"/>
+                        </div>
+                        <div class="col-md-7">
+                          <h2>${res.Title + " (" + res.Year + ") "}</h2>
+                          <h3>${res.Genre + " | " + "Rated: " + res.Rated}</h3>
+                          <p>${res.Plot}</p>
+                          <button id="${res.imdbID}" class="btn watchList" name="${res.Title}">Watch List</button>
+                          <button id="${res.imdbID}" class="btn reviews" name="${res.Title}" data-bs-toggle="modal" data-bs-target="#reviewModal" data-bs-whatever="${res.imdbID}">Seen It!</button>
+                        </div>
+                      </div>
+                    </div>
+                    <br>`
 
-              h2.text(res.Title + " (" + res.Year + ") ");
-              h3.text(res.Genre + " | " + "Rated: " + res.Rated);
-              p.text(res.Plot);
-              img.attr("src", res.Poster);
-
-              btn1
-                .text("Watch List")
-                .attr("id", res.imdbID)
-                .attr("class", "watchList btn btn-secondary")
-                .attr("name", res.Title);
-              btn2
-                .text("Seen it!")
-                .attr("id", res.imdbID)
-                .attr("class", "reviews btn btn-secondary")
-                .attr("name", res.Title)
-                .attr("data-bs-toggle", "modal")
-                .attr("data-bs-target", "#reviewModal")
-                .attr("data-bs-whatever", res.imdbID);
-
-              $(".searchResults").append(h2, h3, img, p, btn1, btn2);
+              $(".searchResults").append(html);
             }
           });
         }
@@ -71,21 +64,20 @@ $(document).ready(function () {
     $.ajax({
       url: "/api/movies",
       method: "POST",
-      data: newMovie,
-    }).then(function (response) {
+      data: newMovie
+  }).then(function (response) {
       console.log(response);
       if (response.err) {
-        window.location = "/signup";
+          window.location = "/signup";
       }
-    });
-
-    $.ajax({
-      url: "/api/usermovie/unseen",
-      method: "POST",
-      data: { id: newMovie.imdbID },
-    }).then(function (res) {
-      console.log(res);
-    });
+      $.ajax({
+          url: "/api/usermovie/unseen",
+          method: "POST",
+          data: {id: newMovie.imdbID}
+      }).then(function (res) {
+        console.log(res)
+      })
+  })
   });
 
   $(document).on("click", ".reviews", function (event) {
