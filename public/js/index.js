@@ -1,7 +1,7 @@
 $(document).ready(function () {
   var button = $(".submitSearch");
 
-  button.on("click", function () {
+  $(document).on("click", ".submitSearch" function () {
     $(".searchResults").empty();
     $.ajax({
       url: `https://www.omdbapi.com/?apikey=b9e5adb0&s=${$(
@@ -120,6 +120,7 @@ $(document).ready(function () {
       });
   });
   $(document).on("click", ".watchList", function (event) {
+    console.log("pressed button")
     event.preventDefault();
     let imdbID = this.id;
     let name = this.name;
