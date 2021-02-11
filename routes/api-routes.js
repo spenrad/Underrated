@@ -1,6 +1,6 @@
 var db = require("../models");
 var passport = require("../config/passport");
-
+const { default: axios } = require("axios");
 var isAuthenticated = require("../config/middleware/isAuthenticated");
 
 
@@ -112,69 +112,84 @@ module.exports = function (app) {
     })
   });
 
-  app.get("/api/search/", function (req, res) {
+  app.get("/api/search", function (req, res) {
     var hbsObject = {};
-    reviewArr = [];
+    promiseArr = [];
+    console.log("res data: ===================", req._parsedOriginalUrl.query);
+    axios.get("http://www.omdbapi.com/?apikey=b9e5adb0&s=" + req._parsedOriginalUrl.query)
+      .then(function (results) {
+        // console.log(results.data);
+        
+        for (i = 0; i < results.data.Search.length; i++) {
+          promiseArr.push(
+            axios.get("http://www.omdbapi.com/?apikey=b9e5adb0&i=" +
+              results.data.Search[i].imdbID)
+              .then(function (res) {
+                // console.log(res.data);
+                return res.data;
+              })
+        
+          );
+        }
 
-    .get(
-      "http://www.omdbapi.com/?apikey=b9e5adb0&i=" 
-    $.ajax({
-      url: `https://www.omdbapi.com/?apikey=b9e5adb0&s=${$(
-        "#searchBar"
-      ).val()}`,
-      method: "GET",
-    })
-
-
-
-    for (i = 0; i < reviewInf.length; i++) {
-      reviewArr.push(reviewInf[i].dataValues);
-    }
-    hbsObject.reviews = reviewArr;
-    var promiseArr = [];
-
-    for (let i = 0; i < reviewInf.length; i++) {
-      promiseArr.push(
-        db.Movie.findOne({
-          where: {
-            ID: reviewInf[i].dataValues.movieID,
-          },
-        }).then(function (results) {
-          // console.log("movie database ========================", "\n", results.dataValues)
-          console.log("===============================", "\n", reviewInf[i]);
-          var movieData = {
-            movieID: reviewInf[i].dataValues.movieID,
-            review: reviewInf[i].dataValues.review,
-            rating: reviewInf[i].dataValues.rating,
-            watched: reviewInf[i].dataValues.watched,
-          };
-
-          return axios
-            .get(
-              "http://www.omdbapi.com/?apikey=b9e5adb0&i=" +
-              results.dataValues.imdbID
-            )
-            .then(function (response) {
-              movieData.data = response.data;
-              return movieData;
-            });
+        Promise.all(promiseArr).then(function (response) {
+          hbsObject.results = response;
+          // console.log(hbsObject)
+          res.render("search", hbsObject);
         })
-      );
-    }
-    Promise.all(promiseArr).then(function (responses) {
-      hbsObject.movies = responses;
-      hbsObject = {
-        movies: hbsObject.movies,
-        username: hbsObject.userName,
-        avatar: hbsObject.img,
-      };
-      console.log("Handlebars Object:", hbsObject);
+  })
+})
 
-      res.render("profile", hbsObject);
-    });
-  });
-});
-  });
+
+
+
+
+
+//   for (i = 0; i < reviewInf.length; i++) {
+//     reviewArr.push(reviewInf[i].dataValues);
+//   }
+//   hbsObject.reviews = reviewArr;
+//   var promiseArr = [];
+
+//   for (let i = 0; i < reviewInf.length; i++) {
+//     promiseArr.push(
+//       db.Movie.findOne({
+//         where: {
+//           ID: reviewInf[i].dataValues.movieID,
+//         },
+//       }).then(function (results) {
+//         var movieData = {
+//           movieID: reviewInf[i].dataValues.movieID,
+//           review: reviewInf[i].dataValues.review,
+//           rating: reviewInf[i].dataValues.rating,
+//           watched: reviewInf[i].dataValues.watched,
+//         };
+
+//         return axios
+//           .get(
+//             "http://www.omdbapi.com/?apikey=b9e5adb0&i=" +
+//             results.dataValues.imdbID
+//           )
+//           .then(function (response) {
+//             movieData.data = response.data;
+//             return movieData;
+//           });
+//       })
+//     );
+//   }
+//   Promise.all(promiseArr).then(function (responses) {
+//     hbsObject.movies = responses;
+//     hbsObject = {
+//       movies: hbsObject.movies,
+//       username: hbsObject.userName,
+//       avatar: hbsObject.img,
+//     };
+//     console.log("Handlebars Object:", hbsObject);
+
+//     res.render("profile", hbsObject);
+//   });
+// });
+
 
 app.get("/logout", function (req, res) {
   req.session.destroy(function (err) {

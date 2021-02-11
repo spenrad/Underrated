@@ -49,11 +49,6 @@ router.get("/user/:profile", function (req, res) {
         userID: userInf.id,
       },
     }).then(function (reviewInf) {
-      reviewArr = [];
-      for (i = 0; i < reviewInf.length; i++) {
-        reviewArr.push(reviewInf[i].dataValues);
-      }
-      hbsObject.reviews = reviewArr;
       var promiseArr = [];
 
       for (let i = 0; i < reviewInf.length; i++) {
