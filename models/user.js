@@ -17,15 +17,11 @@ module.exports = function (sequelize, DataTypes) {
         },
         imgURL: {
             type: DataTypes.STRING,
-            validate: { isUrl: true }
+            allowNull: true
         }
     });
 
-    // UserMovie.belongsTo(User, {
-    //     foreignKey: { allowNull: false }
-    // })
 
-    // User.hasMany(UserMovie, {});
     User.prototype.validPassword = function(password) {
         return bcrypt.compareSync(password, this.password);
       };

@@ -58,7 +58,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary addReview" data-bs-dismiss="modal" >Add to Reviews</button>
+        <button type="button" class="btn btn-primary addReview" data-bs-dismiss="modal">Add to Reviews</button>
       </div>
     </div>
   </div>
@@ -66,39 +66,38 @@
 
 <script src="./js/index.js"></script>
 <script>
-var reviewModal = document.getElementById('reviewModal');
-reviewModal.addEventListener('show.bs.modal', function (event) {
+  var reviewModal = document.getElementById('reviewModal');
+  reviewModal.addEventListener('show.bs.modal', function (event) {
 
-  var button = event.relatedTarget;
-  var movTitle= button.getAttribute('name'); 
-  var movID = button.getAttribute('data-bs-whatever');
-  var modalTitle = reviewModal.querySelector('.modal-title');
-  var modalBodyInput = reviewModal.querySelector('.modal-body input');
+    var button = event.relatedTarget;
+    var movTitle = button.getAttribute('name');
+    var movID = button.getAttribute('data-bs-whatever');
+    var modalTitle = reviewModal.querySelector('.modal-title');
+    var modalBodyInput = reviewModal.querySelector('.modal-body input');
 
 
     modalTitle.textContent = 'Leave a review for ' + '"' + movTitle + '"';
     $(".addReview").attr("id", movID);
   });
 
-function eraseReview() {
-  $("#reviewText").val("");
-};
+  function eraseReview() {
+    $("#reviewText").val("");
+  };
 
-function eraseRating() {
-  $(".starRater").trigger("reset");
-};
+  function eraseRating() {
+    $(".starRater").trigger("reset");
+  };
 
-function removeValue() {
-  $(".addReview").removeAttr("value");
-}
+  function removeValue() {
+    $(".addReview").removeAttr("value");
+  }
 
-$(".star").on("click", function(event) {
-  $(".addReview").attr("value", this.id);
-});
+  $(".star").on("click", function (event) {
+    $(".addReview").attr("value", this.id);
+  });
 
-$(".addReview").on("click", function (event) {
-    console.log("Button test" + ": " +$(this).attr("id"));
-    
+  $(".addReview").on("click", function (event) {
+
     $.ajax({
       url: "/api/usermovie/seen",
       method: "POST",
@@ -114,8 +113,6 @@ $(".addReview").on("click", function (event) {
       removeValue();
 
     })
-  })
-
-
+  });
 
 </script>
