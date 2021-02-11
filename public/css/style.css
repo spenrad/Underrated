@@ -8,6 +8,10 @@ h1, h2, h3, h4, h5, p, .btn {
     color : rgb(212, 189, 191);
 }
 
+p{
+    margin-bottom: 0;
+}
+
 .btn {
     background-color:rgb(90, 20, 24);
 }
@@ -91,7 +95,7 @@ h1 {
 }
 
 #details{
-    background-color: rgba(0, 0, 0, 0.329);
+    background-color: rgba(0, 0, 0, 0.425);
 }
 
 
