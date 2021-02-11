@@ -4,18 +4,17 @@
 <!-- ///////// Page Tile Row ////////////// -->
 <div class="row">
     <div class="col-12 d-flex justify-content-center">
-         <h1>All Movie Members</h1>
+        <h1>All Movie Members</h1>
     </div>
 </div>
 
 
 <div class="row">
     <div class="col-12" id="memberDisplay">
-{{#each user}}
-{{> movies/member-block }}
-{{/each}}
+        <div class="row">
+            {{#each user}}
+            {{> movies/member-block }}
+            {{/each}}
+        </div>
     </div>
 </div>
-
-
-  
