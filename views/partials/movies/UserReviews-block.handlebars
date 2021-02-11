@@ -4,33 +4,27 @@
             <div class="row">
                 <div id="viewAllofThisUsersReviews-block">
                     <div class="col-4">
-                        <img class="posterSize" src="{{poster}}" alt="Movie Poster">
+                        <img class="posterSize" src="{{data.Poster}}" alt="Movie Poster">
                     </div>
                     <div class="col-8">
                         <div class="row">
                             <div class="col-12">
-                            <p class="">{{movies.Title}}</p>
+                            <p class="">{{data.Title}}</p>
                             </div>
                             <div class="col-12">
-                            <p class="fullFormLite">({{movies.year}})</p>
+                            <p class="fullFormLite">({{data.Year}})</p>
                             </div>
                             <div class="col-6">
-                            <p class="fullFormLite">{{rating}}</p>
+                            <p class="fullFormLite">{{data.Rated}}</p>
                             </div>
                             <div class="col-6">
-                            <p class="fullFormLite">{{genre}}</p>
-                            </div>
-                            <div class="col-12">
-                            <p class="fullFormLite">{{plot}}</p>
+                            <p class="fullFormLite">{{data.Genre}}</p>
                             </div>
                         </div>
                     </div>
-                    <div class="col-12">
-                        <p class="fullFormLite">{{userName}}</p>
-                    </div>
-                    <div class="col-12">
+                    {{#if review}}<div class="col-12">
                         <p class="fullFormLite">{{review}}</p>
-                    </div>
+                    </div>{{/if}}
                 </div>
             </div>
         </div>

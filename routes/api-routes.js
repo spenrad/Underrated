@@ -11,9 +11,11 @@ module.exports = function (app) {
       });
 
     app.post("/api/signup", function(req, res) {
-        db.User.create({
-          username: req.body.username,
-          password: req.body.password
+        db.User.findOrCreate({
+          where: {username: req.body.username},
+          defaults:{
+          password: req.body.password,
+          imgURL : req.body.imgURL}
         })
           .then(function() {
             res.redirect(307, "/api/login");
@@ -78,9 +80,6 @@ module.exports = function (app) {
       },
 
     }).then(function (dbMovie) {
-      // console.log("================");
-      // console.log("Movie ID:", dbMovie);
-      // console.log("================");
         db.UserMovie.findOrCreate({
           
           where: {

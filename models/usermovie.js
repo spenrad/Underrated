@@ -8,6 +8,7 @@ module.exports = function (sequelize, DataTypes) {
             type: DataTypes.BOOLEAN,
             defaultValue: false  //defaults to unwatched
         },
+    
         rating: {
             type: DataTypes.INTEGER,
         },
