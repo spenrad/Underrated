@@ -16,6 +16,7 @@ router.get("/signup", function (req, res) {
   res.render("createAccount");
 });
 
+
 router.get("/members", function (req, res) {
   var hbsObject = {};
   db.User.findAll({})

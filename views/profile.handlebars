@@ -65,13 +65,13 @@
       <div class="row">
         <div class="col-12">
           <!-- ///////// MOVIE List Rendered in HERE ////////////// -->
-          <section class="box">  
+          <section class="box">
             {{#each movies}}
             {{#unless watched}}
             {{> movies/watchlist-block }}
             {{/unless}}
             {{/each}}
-</section>
+          </section>
         </div>
       </div>
     </div>
@@ -98,9 +98,7 @@
             {{#if watched}}
             {{> movies/UserReviews-block }}
             {{/if}}
-            
             {{/each}}
-
           </section>
         </div>
       </div>
