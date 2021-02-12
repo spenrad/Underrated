@@ -75,7 +75,7 @@ router.get("/user/:profile", function (req, res) {
 
             return axios
               .get(
-                "http://www.omdbapi.com/?apikey=b9e5adb0&i=" +
+                "https://www.omdbapi.com/?apikey=b9e5adb0&i=" +
                   results.dataValues.imdbID
               )
               .then(function (response) {

@@ -15,7 +15,7 @@ $(document).ready(function () {
 
         for (i = 0; i < response.Search.length; i++) {
           queryURL =
-            "http://www.omdbapi.com/?apikey=b9e5adb0&i=" +
+            "https://www.omdbapi.com/?apikey=b9e5adb0&i=" +
             response.Search[i].imdbID;
           $.ajax({
             url: queryURL,
