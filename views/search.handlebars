@@ -38,7 +38,7 @@
       </div>
       <div class="modal-body">
         <!-- ////////////// STARS STARS STARS STARS//////////// -->
-        <div class="stars d-flex justify-content-start hidden">
+        <div class="stars d-flex flex-row-reverse justify-content-start hidden">
           <form action="" class="starRater">
             <input class="star star-5" id="5" type="radio" name="star" />
             <label class="star star-5" for="5"></label>
@@ -72,36 +72,27 @@
 <script>
   var reviewModal = document.getElementById('reviewModal');
   reviewModal.addEventListener('show.bs.modal', function (event) {
-
     var button = event.relatedTarget;
     var movTitle = button.getAttribute('name');
     var movID = button.getAttribute('data-bs-whatever');
     var modalTitle = reviewModal.querySelector('.modal-title');
     var modalBodyInput = reviewModal.querySelector('.modal-body input');
-
-
     modalTitle.textContent = 'Leave a review for ' + '"' + movTitle + '"';
     $(".addReview").attr("id", movID);
   });
-
   function eraseReview() {
     $("#reviewText").val("");
   };
-
   function eraseRating() {
     $(".starRater").trigger("reset");
   };
-
   function removeValue() {
     $(".addReview").removeAttr("value");
   }
-
   $(".star").on("click", function (event) {
     $(".addReview").attr("value", this.id);
   });
-
   $(".addReview").on("click", function (event) {
-
     $.ajax({
       url: "/api/usermovie/seen",
       method: "POST",
@@ -115,8 +106,6 @@
       eraseReview();
       eraseRating();
       removeValue();
-
     })
   });
-
 </script>
