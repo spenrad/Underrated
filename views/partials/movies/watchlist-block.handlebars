@@ -1,37 +1,19 @@
-<div class="row">
-    <div class="box">
-        <div class="col-12 d-flex justify-content-center">
-            <div class="row">
-                <div id="movieProfile-block">
-                    <div class="col-4">
-                        <img class="posterSize" src="{{data.Poster}}" alt="Movie Poster">
-                        </div>
-                        <div class="col-8">
-                        <div class="row">
-                            <div class="col-12">
-                            <p class="">{{data.Title}}</p>
-                            </div>
-                            <div class="col-12">
-                            <p class="fullFormLite">({{data.Year}})</p>
-                            </div>
-                            <div class="col-6">
-                            <p class="fullFormLite">{{data.Rated}}</p>
-                            </div>
-                            <div class="col-6">
-                            <p class="fullFormLite">{{data.Genre}}</p>
-                            </div>
-                            <div class="col-12">
-                            <p class="fullFormLite">{{data.Plot}}</p>
-                            </div>
-                            <div class="col-12">
-                                <button type="button" class="fullForm btn btn-secondary reviews" id="{{imdbID}}"
-                                    name={{data.Title}}>Write A
-                                    Review</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<div id="details">
+    <div class="row">
+        <div class="col-6">
+            <p style="font-weight: bold; color:rgb(196, 21, 30);">{{data.Title}}</p>
+            <img class="posterSize" src="{{data.Poster}}" alt="Movie Poster" style="width:75px;">
+            <p>({{data.Year}})</p>
+        </div>
+        <div class="col-6">
+            
+            <p><span id="reviewSpan" style="color:rgb(196, 21, 30);">Genre: </span>{{data.Genre}}</p>
+                <p><span id="reviewSpan" style="color:rgb(196, 21, 30);">Rated: </span>{{data.Rated}}</p>
+            <br>
+            <br>
+            <button type="button" class="btn reviews" id="{{data.imdbID}}" name="{{data.Title}}" data-bs-toggle="modal" data-bs-target="#reviewModal" data-bs-whatever="{{data.imdbID}}">Seen it!</button>
         </div>
     </div>
 </div>
+<br>
+<hr>

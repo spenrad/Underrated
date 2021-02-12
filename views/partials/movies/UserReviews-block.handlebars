@@ -1,32 +1,24 @@
-<div class="row">
-    <div class="box">
-        <div class="col-12 d-flex justify-content-center">
-            <div class="row">
-                <div id="viewAllofThisUsersReviews-block">
-                    <div class="col-4">
-                        <img class="posterSize" src="{{data.Poster}}" alt="Movie Poster">
-                    </div>
-                    <div class="col-8">
-                        <div class="row">
-                            <div class="col-12">
-                            <p class="">{{data.Title}}</p>
-                            </div>
-                            <div class="col-12">
-                            <p class="fullFormLite">({{data.Year}})</p>
-                            </div>
-                            <div class="col-6">
-                            <p class="fullFormLite">{{data.Rated}}</p>
-                            </div>
-                            <div class="col-6">
-                            <p class="fullFormLite">{{data.Genre}}</p>
-                            </div>
-                        </div>
-                    </div>
-                    {{#if review}}<div class="col-12">
-                        <p class="fullFormLite">{{review}}</p>
-                    </div>{{/if}}
-                </div>
+<div id="details">
+    <div class="row">
+            <div class="col-8">
+                <h5 style="font-weight: bold; color:rgb(196, 21, 30);">{{data.Title}} ({{data.Year}})</h5>
+                <img src="{{data.Poster}}" alt="Movie Poster" style="width:117px;">     
             </div>
-        </div>
+            <div class="col-4">
+                <p><span id="reviewSpan" style="color:rgb(196, 21, 30);">Genre: </span>{{data.Genre}}</p>
+                <br>
+                <p><span id="reviewSpan" style="color:rgb(196, 21, 30);">Rated: </span>{{data.Rated}}</p>
+            </div>
+    </div>
+    <div class="row">
+        
+        {{#if rating}}<div class="col-12">
+                <br><p><span id="reviewSpan" style="color:rgb(196, 21, 30);">Review: </span>{{rating}}/5 Stars</p>
+            </div>{{/if}}
+        {{#if review}}<div class="col-12">
+                <br><p><span id="reviewSpan" style="color:rgb(196, 21, 30);">Review: </span>{{review}}</p><br>
+            </div>{{/if}}
     </div>
 </div>
+<hr>
+

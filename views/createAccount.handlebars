@@ -21,28 +21,31 @@
             <div class="col-12 d-flex justify-content-center">
 
               <!-- start of Nessted login input field -->
-              <div class="d-flex justify-content-center row">
+              <div class="justify-content-center row">
 
                 <div class="box">
                   <div class="row">
-                    <div class="col-12 d-flex justify-content-center">
-                      <Input class="fullFormLite createLOGIN" id="username"></Input>
+                    <div class="col-12 justify-content-center">
+                      {{!-- <label for="username" class="form-label">Username</label> --}}
+                      <Input class="fullFormLite createLOGIN" id="username" placeholder="Choose a Username"></Input>
+                    </div>
+
+                    <div class="col-12 justify-content-center">
+                      {{!-- <label for="password" class="form-label">Password</label> --}}
+                      <Input class="fullFormLite createLOGIN" type="password" id="password" placeholder="Choose a Password"></Input>
+                    </div>
+
+                    <div class="col-12 justify-content-center">
+                      {{!-- <label for="img" class="form-label">Avatar</label> --}}
+                      <Input class="fullFormLite createLOGIN" id="img" placeholder="Paste Direct Image Link for Profile Avatar"></Input>
                     </div>
 
                     <div class="col-12 d-flex justify-content-center">
-
-                      <Input class="fullFormLite createLOGIN" id="password"></Input>
+                      <button class="btn createLOGIN" id="signup">Submit</button>
                     </div>
-
+                    
                     <div class="col-12 d-flex justify-content-center">
-                      <Input class="fullFormLite createLOGIN" id="img"></Input>
-                    </div>
-
-                    <div class="col-12 d-flex justify-content-center">
-                      <button class="fullForm createLOGIN" id="signup">Submit</button>
-                    </div>
-                    <div class="col-12 d-flex justify-content-center">
-                      <a href="/login">Login</a>
+                      <a href="/login" id="memLink"><br>Login</a>
                     </div>
                   </div>
                                       

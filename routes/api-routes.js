@@ -37,18 +37,11 @@ module.exports = function (app) {
     })
   })
 
-
   app.get("/api/profile", function (req, res) {
     console.log("req.user: ")
     // console.log(req.user.username);
       res.json(req.user.username)
       })
-    
-
-    
-    
-  
-
 
   app.post("/api/movies", isAuthenticated, function (req, res) {
     db.Movie.findOrCreate({
@@ -81,6 +74,33 @@ module.exports = function (app) {
           review: req.body.review,
           rating: req.body.rating,
           watched: true,
+        }
+      })
+        .then(function (res) {
+          console.log(res);
+        });
+      res.json(dbMovie);
+    })
+  });
+
+  app.put("/api/usermovie/seen", function (req, res) {
+    db.Movie.findOne({
+      where: {
+        imdbID: req.body.id,
+      },
+
+    }).then(function (dbMovie) {
+      console.log("Movie ID:", dbMovie);
+      console.log(req.user);
+      db.UserMovie.update({
+        
+          review: req.body.review,
+          rating: req.body.rating,
+          watched: true,
+        },
+        { where: {
+          userID: req.user.id,
+          movieID: dbMovie.dataValues.id
         }
       })
         .then(function (res) {
