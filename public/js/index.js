@@ -25,7 +25,7 @@ $(document).ready(function () {
               console.log(res.title, " doesn't have a poster");
             } else {
               console.log("title search:", res);
-              
+         
         var html = `
                     <br>
                     <div class="searchBlock">
@@ -45,6 +45,7 @@ $(document).ready(function () {
                     <br>`
 
               $(".searchResults").append(html);
+
             }
           });
         }

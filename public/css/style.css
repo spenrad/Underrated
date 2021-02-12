@@ -48,8 +48,6 @@ hr {
     margin-bottom: 15px;
     margin-left: 30px;
     margin-right: 30px;
-    
-
 }
 .createLOGIN {
     width: 300px;
@@ -107,6 +105,42 @@ hr {
     display: inline;
 }
 
+.sTitle, .sYear, .sGenre, .sRated, .sPlot, p {   border-style: solid;
+    border-width: 3px;
+    border-color: grey;
+    font-size: 24px;
+    display: block;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.sBttn1{
+margin-top: 20px;
+margin-bottom: 5px;
+border-style: solid;
+border-width: 3px;
+border-color: Black;
+background-color: black;
+color: ivory;
+}
+.sBttn2{
+    margin-top: 5px;
+    margin-bottom: 50px;
+    border-style: solid;
+    border-width: 3px;
+    border-color: Black;
+    background-color: black;
+    color: ivory;
+}
+ .sBar{
+     margin-bottom: 80px;
+ }
+/* .sPoster{
+    width
+}
+img {
+    width: 200px;
+    height: auto;
+} */
 /* /////////// Navigation Styling //////////// */
 .nav-link {
     padding-top: 15px;
