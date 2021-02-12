@@ -90,6 +90,33 @@ module.exports = function (app) {
     })
   });
 
+  app.put("/api/usermovie/seen", function (req, res) {
+    db.Movie.findOne({
+      where: {
+        imdbID: req.body.id,
+      },
+
+    }).then(function (dbMovie) {
+      console.log("Movie ID:", dbMovie);
+      console.log(req.user);
+      db.UserMovie.update({
+        
+          review: req.body.review,
+          rating: req.body.rating,
+          watched: true,
+        },
+        { where: {
+          userID: req.user.id,
+          movieID: dbMovie.dataValues.id
+        }
+      })
+        .then(function (res) {
+          console.log(res);
+        });
+      res.json(dbMovie);
+    })
+  });
+
   app.post("/api/usermovie/unseen", function (req, res) {
     console.log("req.body:", req.body);
     db.Movie.findOne({

@@ -4,7 +4,7 @@ body {
     background-size: 100%;
 }
 
-h1, h2, h3, h4, h5, p, .btn {
+h1, h2, h3, h4, h5, h6, p, .btn {
     color : rgb(212, 189, 191);
 }
 
@@ -20,6 +20,10 @@ p{
 h1 {
     margin-top: 50px;
     margin-bottom: 50px;
+}
+
+hr {
+    color: rgb(180,172,180);
 }
 
 #NONE {
@@ -124,9 +128,7 @@ nav {
 .avatarSize{
     width: 200px;
 }
-.posterSize{
-    width: 200px;
-}
+
 
 /* /////////// Member Page //////////////////////// */
 
@@ -148,6 +150,19 @@ nav {
     background-color: rgba(0, 0, 0, 0.329);
     align-content: center;
 }
+
+/* #reviewSpan:hover{
+    color:rgb(196, 21, 30);
+} */
+
+#reviewSpan{
+    font-weight: 650;
+}
+
+.fas{
+    cursor: pointer;
+}
+
 
 /* ///////////// stars fly out /////////////////// */
 .hidden{
@@ -177,6 +192,8 @@ div.stars {
     color: rgb(0, 217, 255);
     transition: all .25s;
   }
+
+
   
   input.star-5:checked ~ label.star:before {
     color: rgba(8, 189, 245, 0.842);

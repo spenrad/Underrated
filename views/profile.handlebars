@@ -104,3 +104,94 @@
   <!-- ///////// END OF 2nd Column ////////////// -->
 </div>
 <!-- ///////// END OF Two Column Content ////////////// -->
+
+<div class="modal fade" id="reviewModal" tabindex="-1" aria-labelledby="reviewModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="reviewModalLabel">New review</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+          <!-- ////////////// STARS STARS STARS STARS//////////// -->
+        <div class="stars d-flex justify-content-start hidden">
+          <form action="" class="starRater">
+            <input class="star star-5" id="5" type="radio" name="star" />
+            <label class="star star-5" for="5"></label>
+            <input class="star star-4" id="4" type="radio" name="star" />
+            <label class="star star-4" for="4"></label>
+            <input class="star star-3" id="3" type="radio" name="star" />
+            <label class="star star-3" for="3"></label>
+            <input class="star star-2" id="2" type="radio" name="star" />
+            <label class="star star-2" for="2"></label>
+            <input class="star star-1" id="1" type="radio" name="star" />
+            <label class="star star-1" for="1"></label>
+          </form>
+        </div>
+        <!-- ////////////// END STARS END STARS END STARS END STARS//////////// -->
+        <form>
+          <div class="mb-3">
+            <label for="reviewText" class="col-form-label">Review:</label>
+            <textarea class="form-control" id="reviewText"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary addReview" data-bs-dismiss="modal">Add to Reviews</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  var reviewModal = document.getElementById('reviewModal');
+  reviewModal.addEventListener('show.bs.modal', function (event) {
+
+    var button = event.relatedTarget;
+    var movTitle = button.getAttribute('name');
+    var movID = button.getAttribute('data-bs-whatever');
+    var modalTitle = reviewModal.querySelector('.modal-title');
+    var modalBodyInput = reviewModal.querySelector('.modal-body input');
+
+
+    modalTitle.textContent = 'Leave a review for ' + '"' + movTitle + '"';
+    $(".addReview").attr("id", movID);
+  });
+
+  function eraseReview() {
+    $("#reviewText").val("");
+  };
+
+  function eraseRating() {
+    $(".starRater").trigger("reset");
+  };
+
+  function removeValue() {
+    $(".addReview").removeAttr("value");
+  }
+
+  $(".star").on("click", function (event) {
+    $(".addReview").attr("value", this.id);
+  });
+
+  $(".addReview").on("click", function (event) {
+
+    $.ajax({
+      url: "/api/usermovie/seen",
+      method: "PUT",
+      data: {
+        id: $(this).attr("id"),
+        rating: $(this).attr("value"),
+        review: $("#reviewText").val()
+      }
+    }).then(function (res) {
+      console.log(res);
+      eraseReview();
+      eraseRating();
+      removeValue();
+
+    })
+  });
+
+</script>

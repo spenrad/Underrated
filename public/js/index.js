@@ -1,7 +1,8 @@
 $(document).ready(function () {
   var button = $(".submitSearch");
 
-  button.on("click", function () {
+  button.on("click", function (event) {
+    event.preventDefault();
     $(".searchResults").empty();
     $.ajax({
       url: `https://www.omdbapi.com/?apikey=b9e5adb0&s=${$(
