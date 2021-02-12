@@ -129,6 +129,11 @@ nav {
     width: 200px;
 }
 
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
 
 /* /////////// Member Page //////////////////////// */
 

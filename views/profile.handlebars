@@ -176,7 +176,7 @@
   });
 
   $(".addReview").on("click", function (event) {
-
+  
     $.ajax({
       url: "/api/usermovie/seen",
       method: "PUT",
@@ -190,7 +190,6 @@
       eraseReview();
       eraseRating();
       removeValue();
-
     })
   });
 

@@ -37,18 +37,11 @@ module.exports = function (app) {
     })
   })
 
-
   app.get("/api/profile", function (req, res) {
     console.log("req.user: ")
     // console.log(req.user.username);
       res.json(req.user.username)
       })
-    
-
-    
-    
-  
-
 
   app.post("/api/movies", isAuthenticated, function (req, res) {
     db.Movie.findOrCreate({
