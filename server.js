@@ -21,15 +21,10 @@ app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
 
 
-
-// Require Routes HERE
 var HTMLroutes = require("./routes/html-routes");
 app.use(HTMLroutes);
 require("./routes/api-routes")(app);
 
-
-// Syncing our sequelize models and then starting our Express app
-// =============================================================
 db.sequelize.sync({}).then(function () {
   app.listen(PORT, function () {
     console.log("App listening on PORT " + PORT);

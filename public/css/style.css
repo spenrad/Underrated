@@ -1,19 +1,39 @@
+body {
+    background-image: url(../img/background.jpg);
+    background-attachment: fixed;
+    background-size: 100%;
+}
+
+h1, h2, h3, h4, h5, h6, p, .btn {
+    color : rgb(212, 189, 191);
+}
+
+p{
+    margin-bottom: 0;
+}
+
+.btn {
+    background-color:rgb(90, 20, 24);
+}
+
+
 h1 {
     margin-top: 50px;
     margin-bottom: 50px;
 }
-h2 {
-    margin-top: 50px;
-    margin-bottom: 50px;
+
+hr {
+    color: rgb(180,172,180);
 }
+
 #NONE {
     margin-top: 0px;
 }
 .fullForm {
     width: 100%;
-    border-style: solid;
+    /* border-style: solid;
     border-width: 3px;
-    border-color: Black;
+    border-color: Black; */
     background-color: black;
     color: ivory;
     margin-bottom: 15px;
@@ -22,9 +42,9 @@ h2 {
 }
 .fullFormLite {
     width: 100%;
-    border-style: solid;
+    /* border-style: solid;
     border-width: 3px;
-    border-color: grey;
+    border-color: grey; */
     margin-bottom: 15px;
     margin-left: 30px;
     margin-right: 30px;
@@ -37,18 +57,18 @@ h2 {
 
 
 .oBox {
-    border-style: solid;
+    /* border-style: solid;
     border-width: 3px;
-    border-color: black;
+    border-color: black; */
     padding-left: 50px;
     padding-right: 50px;
     padding-bottom: 100px;
     margin-bottom: 50px;
 }
 .box {
-    border-style: solid;
+    /* border-style: solid;
     border-width: 3px;
-    border-color: black; 
+    border-color: black;  */
     padding-top: 50px;
     padding-left: 50px;  
     padding-right: 50px; 
@@ -58,12 +78,31 @@ h2 {
 /* //////////// search.html Styling /////// */
 #searchBar {
     width: 400px;
-    height: 100%;
+    background-color: rgb(180,172,180);
+    outline: none;
 }
-.searchButton {
+.submitSearch {
     width: 70px;
+    height: 35px;
+    background-color:rgb(90, 20, 24);
+}
 
-} 
+#searchIcon{
+    justify-content: center;
+    align-items: center;
+};
+
+.searchBlock{
+    margin-top: 10px;
+    margin-bottom: 20px;
+    padding:10px;
+}
+
+#details{
+    background-color: rgba(0, 0, 0, 0.425);
+}
+
+
 .block {
     display: inline;
 }
@@ -71,20 +110,119 @@ h2 {
 /* /////////// Navigation Styling //////////// */
 .nav-link {
     padding-top: 15px;
+    font-weight: bold;
+    font-size: 1.125em;
 }
 
 nav {
     display: inline;
+    background-color:rgb(90, 20, 24);
 }
 .FILM {
     font-size: 2em;
 }
 #BRAND {
     padding-top: 12px;
+    color : rgb(212, 189, 191);
 }
 .avatarSize{
     width: 200px;
 }
-posterSize{
-    width: 200px;
+
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
 }
+
+/* /////////// Member Page //////////////////////// */
+
+#memberCard{
+    display: inline-block;
+    margin: 12px;
+}
+
+#memLink{
+    text-decoration: none;
+    color:rgb(143, 53, 57);
+}
+
+#memLink:hover{
+    color:rgb(196, 21, 30);
+}
+
+#memberCard {
+    background-color: rgba(0, 0, 0, 0.329);
+    align-content: center;
+}
+
+/* #reviewSpan:hover{
+    color:rgb(196, 21, 30);
+} */
+
+#reviewSpan{
+    font-weight: 650;
+}
+
+.fas{
+    cursor: pointer;
+}
+
+
+/* ///////////// stars fly out /////////////////// */
+
+.hidden{
+    width:120px;
+    height: 70px;
+    overflow:hidden;
+}
+div.stars {
+    width: 100%;
+    display: inline-block;
+    padding-left: 40px;
+    
+  }
+  
+  input.star { display: none; }
+  
+  label.star {
+    float: right;
+    padding: 10px;
+    font-size: 36px;
+    color: rgb(0, 0, 0);
+    transition: all .3s;
+  }
+  
+  input.star:checked ~ label.star:before {
+    content: '\f005';
+    color: rgba(238, 234, 14, 0.884);
+    transition: all .25s;
+  }
+  
+  input.star-5:checked ~ label.star:before {
+    color: rgba(238, 234, 14, 0.884);
+    text-shadow: 0 0 20px rgb(241, 238, 41);
+  }
+  
+  input.star-1:checked ~ label.star:before { 
+      color:  rgb(230, 250, 49); 
+    }
+  
+  label.star:hover {
+       transform: rotate(-15deg) scale(1.2);
+       color: rgb(238, 241, 60);
+ }
+ div.hidden:hover {
+    width: 100%;
+    transition: all 3s;
+ }
+  
+  label.star:before {
+    content: '\f005';
+    font-family: FontAwesome;
+  }
+
+/* input.star:checked ~ .hidden:before {
+      width: 100%;
+      overflow: visible;
+  } */

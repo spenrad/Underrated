@@ -1,106 +1,196 @@
-<!-- PROFIL PAGE CONTENT TO GO IN THE {{{ body }}} -->
+<!-- PROFILE PAGE CONTENT TO GO IN THE {{{ body }}} -->
 <!-- ///////// Page Tile Row ////////////// -->
-    <div class="row">
-      <div class="col-12 d-flex justify-content-center">
-        <h1>My Movie Member Profile</h1>
+<div class="row">
+  <div class="col-12 d-flex justify-content-center">
+    <h1>My Movie Member Profile</h1>
+  </div>
+</div>
+
+<!-- ///////// START OF Two Column Content ////////////// -->
+<div class="row">
+  <!-- ///////// START OF First Column ////////////// -->
+  <div class="col-sm-12 col-lg-6">
+    <!-- ///////// START OF Profile Info ////////////// -->
+    <div class="oBox">
+      <div class="row">
+        <div class="col-12 d-flex justify-content-center">
+          <h2>{{username}}</h2>
+        </div>
       </div>
-    </div>
+      <div class="row">
+        <div class="col-12 d-flex justify-content-center">
 
-    <!-- ///////// START OF Two Column Content ////////////// -->
-    <div class="row">
-      <!-- ///////// START OF First Column ////////////// -->
-      <div class="col-sm-12 col-lg-6">
-        <!-- ///////// START OF Profile Info ////////////// -->
-        <div class="oBox">
+          <!-- start of Nessted PROFILE info -->
           <div class="row">
-            <div class="col-12 d-flex justify-content-center">
-              <h2>{{userName}}</h2>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-12 d-flex justify-content-center">
-
-              <!-- start of Nessted PROFILE info -->
+            <div class="col-12 d-flex justify-content-center box">
               <div class="row">
-                <div class="col-12 d-flex justify-content-center box">
-                  <div class="row">
-                    <div class="col-4 d-flex justify-content-center">
-                      <img class="avatarSize" src="{{userAvatar}}" alt="User Avatar image">
-                    </div>
+                <div class="col-4 d-flex justify-content-center">
 
-                    <div class="col-8">
-                      <!-- start of Sub-Nessted PROFILE info: #ofUserReviews and buttons-->
-                      <div class="row">
-                        <div class="col-12">
-                          <p class="fullFormLite">(# of Review's Created)</p>
-                        </div>
-                        <div class="col-12">
-                          <button class="fullForm">Edit Profile</button>
-                        </div>
-                        <div class="col-12">
-                          <button class="fullForm">Logout</button>
-                        </div>
-                      </div>
-                      <!-- END of Sub-Nessted PROFILE info: #ofUserReviews and buttons-->
+                  
+                  <img src="{{#if avatar}}{{avatar}}{{else}}../img/avatar.jpg{{/if}}" alt="avatar" style="width:150px;height:150px;" />
+                  
+                </div>
+
+                {{!-- <div class="col-8">
+                  <!-- start of Sub-Nessted PROFILE info: #ofUserReviews and buttons-->
+                  <div class="row">
+                    <div class="col-12">
+                      <button class="fullForm">Edit Profile</button>
+                    </div>
+                    <div class="col-12">
+                      <button class="fullForm">Logout</button>
                     </div>
                   </div>
-                </div>
+                  <!-- END of Sub-Nessted PROFILE info: #ofUserReviews and buttons-->
+                </div> --}}
               </div>
-              <!-- END Nessted PROFILE info -->
             </div>
           </div>
-        </div>
-        <div class="oBox">
-
-          <div class="row d-flex justify-content-center">
-            <!-- START OF div column container for the Watch List Section-->
-            <!-- define a border for this <div> below -->
-            <div class="col-12 d-flex justify-content-center">
-              <h2>My Watch List<h2>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-12">
-              <!-- ///////// MOVIE List Rendered in HERE ////////////// -->
-              <section class="box"> THIS IS PLACE HOLDER YEXYLorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit sunt, pariatur
-                fugiat voluptatum eligendi officiis voluptatem non beatae soluta ipsum corporis ad architecto excepturi.
-                Delectus dicta perferendis voluptas quae maxime. Lorem ipsum dolor sit amet consectetur, adipisicing
-                elit. Enim illo doloribus autem nam natus iure aut, officiis est animi dicta! Necessitatibus placeat
-                ipsa earum eos? Odit voluptates natus aliquid fuga? Lorem, ipsum dolor sit amet consectetur adipisicing
-                elit. Quam tempore, quasi totam ex dolorem dolor necessitatibus corrupti quia beatae commodi unde itaque
-                consequatur assumenda magni ipsum quod aperiam sequi fuga?</section>
-            </div>
-          </div>
+          <!-- END Nessted PROFILE info -->
         </div>
       </div>
-      <!-- ///////// END First Column Content ////////////// -->
-
-
-      <!-- ///////// START OF 2nd Column ////////////// -->
-      <div class="col-sm-12 col-lg-6">
-        <div class="oBox">
-          <div class="row d-flex justify-content-center">
-            <!-- START OF div column container for the Watch List Section-->
-            <!-- define a border for this <div> below -->
-            <div class="col-12 d-flex justify-content-center">
-              <h2>My Reviews<h2>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-12">
-              <!-- ///////// MOVIE List Rendered in HERE ////////////// -->
-              <section class="box">THIS IS PLACE HOLDER Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit sunt, pariatur
-                fugiat voluptatum eligendi officiis voluptatem non beatae soluta ipsum corporis ad architecto excepturi.
-                Delectus dicta perferendis voluptas quae maxime. Lorem ipsum dolor sit amet consectetur, adipisicing
-                elit. Enim illo doloribus autem nam natus iure aut, officiis est animi dicta! Necessitatibus placeat
-                ipsa earum eos? Odit voluptates natus aliquid fuga? Lorem, ipsum dolor sit amet consectetur adipisicing
-                elit. Quam tempore, quasi totam ex dolorem dolor necessitatibus corrupti quia beatae commodi unde itaque
-                consequatur assumenda magni ipsum quod aperiam sequi fuga?</section>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- ///////// END OF 2nd Column ////////////// -->
     </div>
-    <!-- ///////// END OF Two Column Content ////////////// -->
+    <div class="oBox">
+
+      <div class="row d-flex justify-content-center">
+        <!-- START OF div column container for the Watch List Section-->
+        <!-- define a border for this <div> below -->
+        <div class="col-12 d-flex justify-content-center">
+          <h2>My Watch List<h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <!-- ///////// MOVIE List Rendered in HERE ////////////// -->
+          <section class="box">
+            {{#each movies}}
+            {{#unless watched}}
+            {{> movies/watchlist-block }}
+            {{/unless}}
+            {{/each}}
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ///////// END First Column Content ////////////// -->
+
+
+  <!-- ///////// START OF 2nd Column ////////////// -->
+  <div class="col-sm-12 col-lg-6">
+    <div class="oBox">
+      <div class="row d-flex justify-content-center">
+        <!-- START OF div column container for the Watch List Section-->
+        <!-- define a border for this <div> below -->
+        <div class="col-12 d-flex justify-content-center">
+          <h2>My Reviews<h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <!-- ///////// MOVIE List Rendered in HERE ////////////// -->
+
+          <section class="box">
+            {{#each movies}}
+            {{#if watched}}
+            {{> movies/UserReviews-block }}
+            {{/if}}
+            {{/each}}
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ///////// END OF 2nd Column ////////////// -->
+</div>
+<!-- ///////// END OF Two Column Content ////////////// -->
+
+<div class="modal fade" id="reviewModal" tabindex="-1" aria-labelledby="reviewModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="reviewModalLabel">New review</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+          <!-- ////////////// STARS STARS STARS STARS//////////// -->
+        <div class="stars d-flex justify-content-start hidden">
+          <form action="" class="starRater">
+            <input class="star star-5" id="5" type="radio" name="star" />
+            <label class="star star-5" for="5"></label>
+            <input class="star star-4" id="4" type="radio" name="star" />
+            <label class="star star-4" for="4"></label>
+            <input class="star star-3" id="3" type="radio" name="star" />
+            <label class="star star-3" for="3"></label>
+            <input class="star star-2" id="2" type="radio" name="star" />
+            <label class="star star-2" for="2"></label>
+            <input class="star star-1" id="1" type="radio" name="star" />
+            <label class="star star-1" for="1"></label>
+          </form>
+        </div>
+        <!-- ////////////// END STARS END STARS END STARS END STARS//////////// -->
+        <form>
+          <div class="mb-3">
+            <label for="reviewText" class="col-form-label">Review:</label>
+            <textarea class="form-control" id="reviewText"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary addReview" data-bs-dismiss="modal">Add to Reviews</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  var reviewModal = document.getElementById('reviewModal');
+  reviewModal.addEventListener('show.bs.modal', function (event) {
+
+    var button = event.relatedTarget;
+    var movTitle = button.getAttribute('name');
+    var movID = button.getAttribute('data-bs-whatever');
+    var modalTitle = reviewModal.querySelector('.modal-title');
+    var modalBodyInput = reviewModal.querySelector('.modal-body input');
+
+
+    modalTitle.textContent = 'Leave a review for ' + '"' + movTitle + '"';
+    $(".addReview").attr("id", movID);
+  });
+
+  function eraseReview() {
+    $("#reviewText").val("");
+  };
+
+  function eraseRating() {
+    $(".starRater").trigger("reset");
+  };
+
+  function removeValue() {
+    $(".addReview").removeAttr("value");
+  }
+
+  $(".star").on("click", function (event) {
+    $(".addReview").attr("value", this.id);
+  });
+
+  $(".addReview").on("click", function (event) {
   
+    $.ajax({
+      url: "/api/usermovie/seen",
+      method: "PUT",
+      data: {
+        id: $(this).attr("id"),
+        rating: $(this).attr("value"),
+        review: $("#reviewText").val()
+      }
+    }).then(function (res) {
+      console.log(res);
+      eraseReview();
+      eraseRating();
+      removeValue();
+    })
+  });
+
+</script>

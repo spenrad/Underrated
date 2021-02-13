@@ -1,127 +1,105 @@
 $(document).ready(function () {
-    var button = $(".submitSearch");
+  var button = $(".submitSearch");
 
-    button.on("click", function () {
-        var movieObj = [];
-        $(".searchResults").empty();
-        $.ajax({
-            url: `https://www.omdbapi.com/?apikey=b9e5adb0&s=${$("#searchBar").val()}`,
-            method: "GET"
-        }).then(function (response) {
-            console.log(response);
+  button.on("click", function (event) {
+    event.preventDefault();
+    $(".searchResults").empty();
+    $.ajax({
+      url: `https://www.omdbapi.com/?apikey=b9e5adb0&s=${$(
+        "#searchBar"
+      ).val()}`,
+      method: "GET",
+    })
+      .then(function (response) {
+        console.log(response);
 
-            for (i = 0; i < response.Search.length; i++) {
-                queryURL = "http://www.omdbapi.com/?apikey=b9e5adb0&i=" + response.Search[i].imdbID;
-                $.ajax({
-                    url: queryURL,
-                    method: "GET"
-                }).then(function (res) {
-                    if (res.Poster == "N/A") {
-                        console.log(res.title, " doesn't have a poster");
-                    }
-                    else {
-                        console.log("title search:", res);
-                        var h2 = $("<h2>");
-                        var h3 = $("<h3>");
-                        var p = $("<p>");
-                        var img = $("<img>");
-                        var btn1 = $("<button>");
-                        var btn2 = $("<button>");
-                        let film = {
-                            title: res.Title,
-                            year: res.Year,
-                            genre: res.Genre,
-                            rating: res.Rated,
-                            plot: res.Plot,
-                            poster: res.Poster,
-                            imdbId: res.imdbID
-                        };
-                        movieObj.push(film);
+        for (i = 0; i < response.Search.length; i++) {
+          queryURL =
+            "https://www.omdbapi.com/?apikey=b9e5adb0&i=" +
+            response.Search[i].imdbID;
+          $.ajax({
+            url: queryURL,
+            method: "GET",
+          }).then(function (res) {
+            if (res.Poster == "N/A") {
+              console.log(res.title, " doesn't have a poster");
+            } else {
+              console.log("title search:", res);
+         
+        var html = `
+                    <br>
+                    <div class="searchBlock">
+                      <div class="row">
+                        <div class="col-md-3">
+                          <img src="${res.Poster}" style="width:150px;height:222px;"/>
+                        </div>
+                        <div class="col-md-7" id="details">
+                          <h2>${res.Title + " (" + res.Year + ") "}</h2>
+                          <h4>${res.Genre + " | " + "Rated: " + res.Rated}</h4>
+                          <p>${res.Plot}</p>
+                          <button id="${res.imdbID}" class="btn watchList" name="${res.Title}">Watch List</button>
+                          <button id="${res.imdbID}" class="btn reviews" name="${res.Title}" data-bs-toggle="modal" data-bs-target="#reviewModal" data-bs-whatever="${res.imdbID}">Seen It!</button>
+                        </div>
+                      </div>
+                    </div>
+                    <br>`
 
-
-                        h2.text(res.Title + " (" + res.Year + ") ")
-                        h3.text(res.Genre + " | " + "Rated: " + res.Rated);
-                        p.text(res.Plot);
-                        img.attr("src", res.Poster);
-
-                        btn1.text("Watch List").attr("id", res.imdbID).attr("class", "watchList btn btn-secondary").attr("name", res.Title);
-                        btn2.text("Seen it!").attr("id", res.imdbID).attr("class", "reviews btn btn-secondary").attr("name", res.Title).attr("data-bs-toggle", "modal").attr("data-bs-target", "#exampleModal").attr("data-bs-whatever", res.imdbID);
-
-                        $(".searchResults").append(h2, h3, img, p, btn1, btn2);
-                    }
-                })
+              $(".searchResults").append(html);
 
             }
+          });
+        }
+      })
+      .then(function (movieObj) {
+        console.log(movieObj);
+      });
+  });
+  $(document).on("click", ".watchList", function (event) {
+    event.preventDefault();
+    let imdbID = this.id;
+    let name = this.name;
+    let newMovie = {
+      name: name,
+      imdbID: imdbID,
+    };
 
-            return movieObj;
+    $.ajax({
+      url: "/api/movies",
+      method: "POST",
+      data: newMovie
+  }).then(function (response) {
+      console.log(response);
+      if (response.err) {
+          window.location = "/signup";
+      }
+      $.ajax({
+          url: "/api/usermovie/unseen",
+          method: "POST",
+          data: {id: newMovie.imdbID}
+      }).then(function (res) {
+        console.log(res)
+      })
+  })
+  });
 
-        }).then(function (movieObj) {
-            console.log(movieObj)
+  $(document).on("click", ".reviews", function (event) {
+    event.preventDefault();
+    let imdbID = this.id;
+    let name = this.name;
+    let newMovie = {
+      name: name,
+      imdbID: imdbID,
+    };
 
-        });
+    $.ajax({
+      url: "/api/movies",
+      method: "POST",
+      data: newMovie,
+    }).then(function (response) {
+      console.log(response);
+      if (response.err) {
+        window.location = "/signup";
+      }
     });
-            $(document).on("click", ".watchList", function (event) {
-                event.preventDefault();
-
-                console.log("test");
-                let imdbID = this.id;
-                let name = this.name
-                let newMovie = {
-                    name: name,
-                    imdbID: imdbID
-                }
-
-                $.ajax({
-                    url: "/api/movies",
-                    method: "POST",
-                    data: newMovie
-                }).then(function (response) {
-                    console.log(response);
-                    if (response.err) {
-                        window.location = "/signup";
-                    }
-                })
-
-        $.ajax({
-            url: "/api/movies",
-            method: "POST",
-            data: newMovie
-        }).then(function (response) {
-            console.log(response);
-            if (response.err) {
-                window.location = "/signup";
-            }
-            $.ajax({
-                url: "/api/usermovie/unseen",
-                method: "POST",
-                data: {id: newMovie.imdbID}
-            }).then(function (res) {
-              console.log(res)
-            })
-        })
-        });
-
-            $(document).on("click", ".reviews", function (event) {
-                event.preventDefault();
-
-                console.log("test");
-                let imdbID = this.id;
-                let name = this.name
-                let newMovie = {
-                    name: name,
-                    imdbID: imdbID
-                }
-
-                $.ajax({
-                    url: "/api/movies",
-                    method: "POST",
-                    data: newMovie
-                }).then(function (response) {
-                    console.log(response);
-                    if (response.err) {
-                        window.location = "/signup";
-                    }
-                })
-
-    });
+  });
 });

@@ -1,25 +1,26 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
 	<script src="https://kit.fontawesome.com/71ca394a3d.js" crossorigin="anonymous"></script>
 	<script src="https://code.jquery.com/jquery-3.5.1.min.js"
 		integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-	<link rel="stylesheet" href="./css/style.css">
-	<title>UCBCBMDB</title>
+	<link rel="stylesheet" type= "text/css" href="../css/style.css">
+	<title>Underrated</title>
 </head>
 
 <body>
 
-	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	<nav class="navbar navbar-expand-lg navbar-dark">
 		<div class="container-fluid">
 			<div class="d-flex justify-content-start">
-				<a class="navbar-brand" href="index.html"><i class="fas fa-film FILM"></i></a>
-				<a id="BRAND" class="navbar-brand" href="index.html">UCBCMDB</a>
+				<a class="navbar-brand" href="/"><i class="fas fa-film FILM"></i></a>
+				<a id="BRAND" class="navbar-brand" href="/">Underrated</a>
 			</div>
 			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
 				aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -29,26 +30,45 @@
 				<div class="d-flex justify-content-end">
 					<div class="navbar-nav">
 						<a class="nav-link" href="/">Search</a>
-						<a class="nav-link" href="#">View Members</a>
+						<a class="nav-link" href="/members">View Members</a>
 						<a class="nav-link" href="/signup">Create Account</a>
 						<a class="nav-link" href="/login">Login</a>
-						<a class="nav-link" href="#">Logout</a>
-						<a class="nav-link" href="#"><i class="fas fa-user"></i></a>
+						<a class="nav-link" href="/logout">Logout</a>
+						<a class="nav-link memberButton"><i class="fas fa-user"><span> </span>Profile</i></a>
 					</div>
 				</div>
 			</div>
 
-		  </nav>
+	</nav>
 
-		  <br>
+	<br>
 
-		<div class="container">
-			
-			
-				{{{ body }}}
-			
-		</div>
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
-  </body>
+	<div class="container">
+
+		{{{ body }}}
+
+	</div>
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+		crossorigin="anonymous"></script>
+
+	<script>
+		$(document).on("click", ".memberButton", function (event) {
+		
+
+			console.log("button clicked")
+			$.ajax({
+				url: "/api/profile",
+				method: "GET"
+			}).then(function (response) {
+				console.log("response: ", response);
+				
+				 
+					window.location = "/user/" + response;
+			})
+		})
+	</script>
+</body>
 
 </html>

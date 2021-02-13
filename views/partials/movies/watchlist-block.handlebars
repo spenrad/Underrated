@@ -1,0 +1,19 @@
+<div id="details">
+    <div class="row">
+        <div class="col-6">
+            <p style="font-weight: bold; color:rgb(196, 21, 30);">{{data.Title}}</p>
+            <img class="posterSize" src="{{data.Poster}}" alt="Movie Poster" style="width:75px;">
+            <p>({{data.Year}})</p>
+        </div>
+        <div class="col-6">
+            
+            <p><span id="reviewSpan" style="color:rgb(196, 21, 30);">Genre: </span>{{data.Genre}}</p>
+                <p><span id="reviewSpan" style="color:rgb(196, 21, 30);">Rated: </span>{{data.Rated}}</p>
+            <br>
+            <br>
+            <button type="button" class="btn reviews" id="{{data.imdbID}}" name="{{data.Title}}" data-bs-toggle="modal" data-bs-target="#reviewModal" data-bs-whatever="{{data.imdbID}}">Seen it!</button>
+        </div>
+    </div>
+</div>
+<br>
+<hr>
