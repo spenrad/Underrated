@@ -25,7 +25,8 @@ This web application is a movie review hub for people who want to get away from 
 
 * [Live Site](https://underrated-moviedb.herokuapp.com/)
 * [Project Repository](https://github.com/spenrad/Underrated)
-* ![GIF Visual of The Deployed Web Application](underated.gif)
+
+![GIF Visual of The Deployed Web Application](https://github.com/spenrad/Underrated/blob/master/underated.gif?raw=true)
 
 ______________________________________________________________________________
 
