@@ -1,6 +1,8 @@
 body {
     background-image: url(../img/background.jpg);
     background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
 }
 
 h1, h2, h3, h4, h5, h6, p, .btn {
