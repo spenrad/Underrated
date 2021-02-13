@@ -21,10 +21,8 @@
             <div class="col-12 d-flex justify-content-center">
 
               <!-- start of Nessted login input field -->
-              <div class="justify-content-center row">
-
-                <div class="box">
-                  <div class="row">
+                <div class="row">
+                  <div class="box">
                     <div class="col-12 justify-content-center">
                       {{!-- <label for="username" class="form-label">Username</label> --}}
                       <Input class="fullFormLite createLOGIN" id="username" placeholder="Choose a Username"></Input>
@@ -50,8 +48,6 @@
                   </div>
                                       
                     </div>                   
-
-                </div>
               </div>
             </div>
 
@@ -79,6 +75,7 @@
             data: newUser
         }).then(function(response) {
             console.log(response);
+            window.location = "/";
         })
     })
 </script>

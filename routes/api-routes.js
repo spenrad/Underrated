@@ -135,6 +135,7 @@ module.exports = function (app) {
   app.get("/logout", function (req, res) {
     req.session.destroy(function (err) {
       console.log("Logged out", req.user);
+      res.redirect(307, "/");
     })
   });
 
