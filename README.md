@@ -22,9 +22,9 @@ ______________________________________________________________________________
 
 This web application is a movie review hub for people who want to get away from the mainstream. Let’s face it… no one really likes tomatoes, especially RottenTomatoes. It can all be a bit Overrated.
 
-* [Live Site](#)
+* [Live Site](https://underrated-moviedb.herokuapp.com/)
 * [Project Repository](https://github.com/spenrad/Underrated)
-* ![GIF Visual of The Deployed Web Application]()
+* ![GIF Visual of The Deployed Web Application](underated.gif)
 
 ______________________________________________________________________________
 
@@ -60,6 +60,7 @@ ______________________________________________________________________________
 * [MySQL](https://www.mysql.com/products/workbench/)
 * [HEROKU](https://www.heroku.com/home)
 * [JAWSDB-MySQL](https://www.jawsdb.com/)
+* [omdbapi](https://www.omdbapi.com/)
 
 **package.json Dependencies**
 
@@ -76,49 +77,206 @@ ______________________________________________________________________________
   
 ## Installation
 
-stuff
+There is no installation required if you wish to access this app as is from the [deployed site on Heroku](https://underrated-moviedb.herokuapp.com/).
 
+For local installation [Node.js](https://nodejs.org/en/) needs to be installed as well as [MySQL and MySQl Workbench](https://www.mysql.com/products/workbench/). 
+
+Please clone or download the project folder. And create a new database in Workbench called "crtierion":
+
+```java
+CREATE DATABASE criterion;
+```
+
+Once the database is set up locally verify that the password to access the database is updates in: config/config.son.
+
+```json
+  "development": {
+    "username": "root",
+    "password": "password",
+    "database": "criterion",
+    "host": "127.0.0.1",
+    "port": 3306,
+    "dialect": "mysql"
+  }
+```
+
+Open your prefered terminal or comand_promt program and navigate into the project folder. Run the following command:
+
+```javascript
+npm install
+```
+
+and then run the application with the next command:
+
+```javascript
+node server.js
+```
+
+The application will be visible in your web browser of choice at:
+
+```javascript
+localhost:8080
+```
+
+Once you have created an account, added movies to your watchlist or written a review, go check out the tables created in the MySQL Workbench to see your captured data.
 ______________________________________________________________________________
   
 ## Funtionality
 
-This Apllication in its development used node-express to create a local sever to host the Api and Connct to the MySQL Workbench's local port to send GET Requests, Posts, and Update the local database in MySQL Workbench. This json information was called from and written to that database.
+This Apllication in its development used node-express to create a local sever to host and access our PAI database by conncting to the MySQL Workbench's local port to send GET Requests, Posts, and Update the local database in out "criterion" database in  Workbench.
+
+This application also uses Axios to make GET requests to the [OMDB API](https://www.omdbapi.com/).
+
+For Example:
+Our search bar makes a general GET request to search for movie tieles with the key word submitted from our web page client side. The request retrieves a top ten list of mvies that inclues the movie title, year released, movie rating, genre, and short plot.
+
+When an authenticated(logged in user) interacts with the "Watchlist" button- the onClick event listeners will push the movie id, and accoiated user info a table for future reference.
+
+When an authenticated(logged in user) interacts with the "Review" button- the onClick event listeners will push the movie id, accoiated user info, and review into the appropriate a tables for future reference.
+
+As you can see in the code snippet below this is what is triggered by the event liseners:
 
 ```javascript
-			Code Snippets
-```
+$(document).ready(function () {
+    var button = $(".submitSearch");
 
-This application also uses Axios requests to the Get information from the  
+    button.on("click", function () {
+        var movieObj = [];
+        $(".searchResults").empty();
+        $.ajax({
+            url: `https://www.omdbapi.com/?apikey=b9e5adb0&s=${$("#searchBar").val()}`,
+            method: "GET"
+        }).then(function (response) {
+            console.log(response);
 
-```javascript
-			Code Snippets
+            for (i = 0; i < response.Search.length; i++) {
+                queryURL = "http://www.omdbapi.com/?apikey=b9e5adb0&i=" + response.Search[i].imdbID;
+                $.ajax({
+                    url: queryURL,
+                    method: "GET"
+                }).then(function (res) {
+                    if (res.Poster == "N/A") {
+                        console.log(res.title, " doesn't have a poster");
+                    }
+                    else {
+                        console.log("title search:", res);
+                        var h2 = $("<h2>");
+                        var h3 = $("<h3>");
+                        var p = $("<p>");
+                        var img = $("<img>");
+                        var btn1 = $("<button>");
+                        var btn2 = $("<button>");
+                        let film = {
+                            title: res.Title,
+                            year: res.Year,
+                            genre: res.Genre,
+                            rating: res.Rated,
+                            plot: res.Plot,
+                            poster: res.Poster,
+                            imdbId: res.imdbID
+                        };
+                        movieObj.push(film);
+
+
+                        h2.text(res.Title + " (" + res.Year + ") ")
+                        h3.text(res.Genre + " | " + "Rated: " + res.Rated);
+                        p.text(res.Plot);
+                        img.attr("src", res.Poster);
+
+                        btn1.text("Watch List").attr("id", res.imdbID).attr("class", "watchList btn btn-secondary").attr("name", res.Title);
+                        btn2.text("Seen it!").attr("id", res.imdbID).attr("class", "reviews btn btn-secondary").attr("name", res.Title).attr("data-bs-toggle", "modal").attr("data-bs-target", "#exampleModal").attr("data-bs-whatever", res.imdbID);
+
+                        $(".searchResults").append(h2, h3, img, p, btn1, btn2);
+                    }
+                })
+
+            }
+
+            return movieObj;
+
+        }).then(function (movieObj) {
+            console.log(movieObj)
+
+        });
+    });
+            $(document).on("click", ".watchList", function (event) {
+                event.preventDefault();
+
+                console.log("test");
+                let imdbID = this.id;
+                let name = this.name
+                let newMovie = {
+                    name: name,
+                    imdbID: imdbID
+                }
+
+                $.ajax({
+                    url: "/api/movies",
+                    method: "POST",
+                    data: newMovie
+                }).then(function (response) {
+                    console.log(response);
+                    if (response.err) {
+                        window.location = "/signup";
+                    }
+                })
+
+        $.ajax({
+            url: "/api/movies",
+            method: "POST",
+            data: newMovie
+        }).then(function (response) {
+            console.log(response);
+            if (response.err) {
+                window.location = "/signup";
+            }
+            $.ajax({
+                url: "/api/usermovie/unseen",
+                method: "POST",
+                data: {id: newMovie.imdbID}
+            }).then(function (res) {
+              console.log(res)
+            })
+        })
+        });
+
+            $(document).on("click", ".reviews", function (event) {
+                event.preventDefault();
+
+                console.log("test");
+                let imdbID = this.id;
+                let name = this.name
+                let newMovie = {
+                    name: name,
+                    imdbID: imdbID
+                }
+
+                $.ajax({
+                    url: "/api/movies",
+                    method: "POST",
+                    data: newMovie
+                }).then(function (response) {
+                    console.log(response);
+                    if (response.err) {
+                        window.location = "/signup";
+                    }
+                })
+
+    });
+});
 ```
 
 Using Express-Handlebars allows for the use of a single web page. Express-Handlebars requires the naming conventios of the folders "views", "layouts", and "partials".
 
-```html
-	<body>			
-			{{{ body }}}
-	</body>
-```
-
 The main.handlesbars located in the views/layouts folder has the basic HTML 5 page setup as well as BootStrap Brand Nav and a Grid System Container. Within the grid container is the handlebars tag for additional handle content to be imported into the field of {{{ body }}}.
 
-```html
-	<body>			
-			{{{ body }}}
-	</body>
+Each web page body content is found at the base level of the views folder. Taking a look at the folder you can see a few pages listed. The reapeating sub sections of the web pages are found in the Partials/movies folder.
+
+The reviews are rendered on the user profile using a block.handlebars segments that relies on both data being pulled in to and object from both the OMDB API and our MySQL "criterion" Database to be rendered into our handlebar tags with finesse.
+
+```javascript
+			Code Snippets
 ```
-
-...block.handles file found in views/partials/movies folder. Using BootStrap's grid system.....
-
-```html
-	<body>			
-			{{{ body }}}
-	</body>
-```
-
-The elements are filled with the data querried from the database and api routing that are triggered by the event listeners in the Navigation Bar and Buttons on scree.
 
 ______________________________________________________________________________
 
@@ -213,10 +371,10 @@ ______________________________________________________________________________
 
 ### Questions
 
-If you have any questions contact:
+If you have any questions contact: Any of the [Creators](#creators)
 
 ______________________________________________________________________________
 
 ### License
 
-This project is licensed under: MIT
+This project is licensed under: ![License](https://img.shields.io/static/v1?label=License&message=MIT&color=blueviolet&style=plastic)
